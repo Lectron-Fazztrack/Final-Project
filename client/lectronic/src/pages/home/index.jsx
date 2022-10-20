@@ -1,9 +1,9 @@
-import React from "react";
-import CardOriginal from "../../components/card/cardOriginal";
-import subscribe from "../../img/subscribe.png";
-import { BsSearch } from "react-icons/bs";
-import Header from "../../components/header/header";
-import "./style.css";
+import React from 'react'
+import CardOriginal from '../../components/card/cardOriginal'
+import subscribe from '../../img/subscribe.png'
+import { BsSearch } from 'react-icons/bs'
+import Header from '../../components/header/header'
+import './style.css'
 
 function Home() {
   return (
@@ -179,7 +179,7 @@ function Home() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home
