@@ -1,0 +1,16 @@
+.home-tab {
+  background-color: #0300ad;
+}
+
+.home-button {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  height: 65px;
+  width: 206px;
+  background: #0300ad;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 180px;
+}
