@@ -3,14 +3,21 @@ import CardOriginal from "../../components/card/cardOriginal";
 import subscribe from "../../img/subscribe.png";
 import { BsSearch } from "react-icons/bs";
 import Header from "../../components/header/header";
-import "./style.css";
 
 function Home() {
   return (
     <div className="App">
       <Header />
       <div className="container">
-        <div className="row home-title"></div>
+        <div className="row">
+          <span className="home-badge text-center">Our Product</span>
+        </div>
+
+        <div className="row home-title text-center">
+          The Best Product
+          <br />
+          By Lectronic
+        </div>
         <div className="row mb-5">
           <div className="col-lg-6">
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
