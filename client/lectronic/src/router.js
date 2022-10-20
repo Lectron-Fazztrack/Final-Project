@@ -5,6 +5,7 @@ import Product from "./pages/product";
 import Register from "./pages/register";
 import Login from "./pages/login";
 import User from "./pages/user";
+import Profile from "./pages/profile";
 
 function Routers() {
   return (
@@ -15,6 +16,7 @@ function Routers() {
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/user" element={<User />} />
+        <Route exact path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
