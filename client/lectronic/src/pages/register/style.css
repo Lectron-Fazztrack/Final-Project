@@ -58,3 +58,7 @@
   background-color: white;
   width: 80%;
 }
+
+.fazhov2:hover {
+  transform: scale(1.1);
+}
