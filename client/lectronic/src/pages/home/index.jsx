@@ -3,6 +3,7 @@ import CardOriginal from "../../components/card/cardOriginal";
 import subscribe from "../../img/subscribe.png";
 import { BsSearch } from "react-icons/bs";
 import Header from "../../components/header/header";
+import "./style.css";
 
 function Home() {
   return (
