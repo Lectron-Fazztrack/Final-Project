@@ -24,13 +24,63 @@
 }
 
 .home-badge {
-  display: inline;
-  background-color: #0300ad10;
   color: #0020b2;
   font-size: 18px;
   font-weight: 600;
-  border-radius: 20px;
-  height: 56px;
+  height: 52px;
   width: 147px;
+  background: #0020b210;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 24px;
+}
+
+.home-card {
+  height: 431px;
+  border: 2px solid #33333320;
+  border-radius: 20px;
+  padding: 48px 33px;
+  color: #333;
+  background-color: #fff;
+  margin-bottom: 170px;
+}
+
+.home-card:hover {
+  background-color: #0020b2;
+  color: #fff;
+}
+
+.home-card:hover > .home-card-icon {
+  background-color: #fff;
+  color: #0020b2;
+}
+
+.home-card-title {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+
+.home-card-desc {
+  font-size: 18px;
+  font-size: 600;
+}
+
+.home-card-icon {
+  width: 94px;
+  height: 94px;
+  background-color: #77777720;
+  border-radius: 50%;
+  margin-bottom: 36px;
+}
+
+.home-bs-icon {
+  width: 40px;
+  height: 40px;
   margin: auto;
+}
+
+.row-badge {
+  margin-top: 160px;
 }
