@@ -1,6 +1,7 @@
 import React from "react";
 import CardOriginal from "../../components/card/cardOriginal";
 import subscribe from "../../img/subscribe.png";
+import homebanner from "../../img/homebanner.png";
 import { BsSearch, BsBag, BsCashCoin, BsBox } from "react-icons/bs";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
@@ -10,6 +11,32 @@ function Home() {
   return (
     <div className="App">
       <Header />
+      <div className="row home-banner">
+        <div className="col-lg-6 home-banner-left">
+          <div className="home-banner-title">
+            Take Your Time
+            <br />
+            And<span className="blueblue"> Shop</span>
+            <br />
+            Anywhere
+          </div>
+          <div className="home-banner-desc">
+            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
+            sint. Velit officia consequat duis enim velit mollit..
+          </div>
+          <div className="row mt-4">
+            <button type="button" class="home-button-shop">
+              Shop Now
+            </button>
+            <button type="button" class="home-button-seller">
+              Be a Seller
+            </button>
+          </div>
+        </div>
+        <div className="col-lg-6 home-banner-right">
+          <img src={homebanner} alt="" />
+        </div>
+      </div>
       <div className="container">
         <div className="row row-badge">
           <button type="button" class="home-badge">

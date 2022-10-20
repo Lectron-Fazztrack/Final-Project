@@ -1,3 +1,9 @@
+@media only screen and (max-width: 1000px) {
+  .home-banner-right {
+    display: none;
+  }
+}
+
 .home-tab {
   background-color: #0300ad;
 }
@@ -83,4 +89,47 @@
 
 .row-badge {
   margin-top: 160px;
+}
+
+.home-banner {
+  background-color: #0020b210;
+  padding: 124px 120px;
+}
+
+.home-banner-title {
+  font-size: 60px;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.blueblue {
+  color: #0020b2;
+}
+
+.home-banner-desc {
+  font-size: 18px;
+  font-weight: 600;
+  color: #777;
+}
+
+.home-button-seller {
+  color: #0300ad;
+  border: 1px solid #0020b2;
+  font-size: 18px;
+  font-weight: 600;
+  width: 168px;
+  border-radius: 10px;
+  margin-left: 16px;
+}
+
+.home-button-shop {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  width: 168px;
+  height: 60px;
+  background: #0300ad;
+  border-radius: 10px;
+  margin-left: 16px;
 }
