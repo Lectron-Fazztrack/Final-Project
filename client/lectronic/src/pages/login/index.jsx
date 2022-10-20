@@ -51,7 +51,7 @@ function Login() {
             </div>
           </div>
 
-          <div>
+          <div className="mt-5 ml-3">
             <p className="mt-4" style={{ fontWeight: "bold", display: "flex" }}>
               Not registered yet?&nbsp;
               <Link to="/register" style={{ textDecoration: "none" }}>
