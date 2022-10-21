@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 import name from "./img/name.png";
 import loc from "./img/loc.png";
 import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import InputGroup from "react-bootstrap/InputGroup";
 
 function Profile() {
