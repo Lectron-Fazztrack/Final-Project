@@ -8,7 +8,6 @@ require (
 	github.com/go-gormigrate/gormigrate/v2 v2.0.2
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/google/uuid v1.2.0
-	github.com/joho/godotenv v1.4.0
 	github.com/rs/cors v1.8.2
 	github.com/spf13/cobra v1.6.0
 	golang.org/x/crypto v0.1.0
