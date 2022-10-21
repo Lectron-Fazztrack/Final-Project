@@ -51,7 +51,7 @@ func server(cmd *cobra.Command, args []string) error {
 			Handler:      corss.Handler(mainRoute),
 		}
 
-		fmt.Println("Gorent Api is running on PORT", addrs, "success")
+		fmt.Println("Lectronic is running on PORT", addrs, "success")
 		srv.ListenAndServe()
 		return nil
 	} else {
