@@ -10,12 +10,13 @@ import (
 )
 
 func New() (*gorm.DB, error) {
-	host := os.Getenv("HOST")
-	user := os.Getenv("USER")
-	password := os.Getenv("PASS")
-	dbName := os.Getenv("DB")
+	host := os.Getenv("DBHOST")
+	user := os.Getenv("DBUSER")
+	password := os.Getenv("DBPASS")
+	dbName := os.Getenv("DBNAME")
+	ssl := os.Getenv("DBSSL")
 
-	config := fmt.Sprintf("host=%s user=%s password=%s dbname=%s", host, user, password, dbName)
+	config := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=%s", host, user, password, dbName, ssl)
 
 	gormDB, err := gorm.Open(postgres.Open(config), &gorm.Config{})
 	if err != nil {
