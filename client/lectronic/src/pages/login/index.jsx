@@ -56,8 +56,11 @@ function Login() {
           <div className="mt-5 ml-3">
             <p className="mt-4" style={{ fontWeight: "bold", display: "flex" }}>
               Not registered yet?&nbsp;
-              <Link to="/register" style={{ textDecoration: "none" }}>
-                <p style={{ color: "#0300AD" }}>Create an Account</p>
+              <Link
+                to="/register"
+                style={{ textDecoration: "none", color: "#0300AD" }}
+              >
+                Create an Account
               </Link>
             </p>
           </div>
