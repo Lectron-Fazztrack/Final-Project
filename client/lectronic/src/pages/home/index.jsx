@@ -141,10 +141,10 @@ function Home() {
             sint. Velit officia consequat duis enim velit mollit..
           </div>
           <div className="row mt-4">
-            <button type="button" class="home-button-shop">
+            <button type="button" className="home-button-shop">
               Shop Now
             </button>
-            <button type="button" class="home-button-seller">
+            <button type="button" className="home-button-seller">
               Be a Seller
             </button>
           </div>
@@ -155,7 +155,7 @@ function Home() {
       </div>
       <div className="container">
         <div className="row row-badge">
-          <button type="button" class="home-badge">
+          <button type="button" className="home-badge">
             How it Works
           </button>
         </div>
@@ -208,7 +208,7 @@ function Home() {
         </div>
 
         <div className="row">
-          <button type="button" class="home-badge">
+          <button type="button" className="home-badge">
             Our Product
           </button>
         </div>
@@ -220,10 +220,10 @@ function Home() {
         </div>
         <div className="row mb-5">
           <div className="col-lg-6">
-            <ul class="nav nav-pills" id="pills-tab" role="tablist">
-              <li class="nav-item" role="presentation">
+            <ul className="nav nav-pills" id="pills-tab" role="tablist">
+              <li className="nav-item" role="presentation">
                 <button
-                  class="nav-link active"
+                  className="nav-link active"
                   id="pills-home-tab"
                   data-bs-toggle="pill"
                   data-bs-target="#pills-home"
@@ -235,9 +235,9 @@ function Home() {
                   Headphone
                 </button>
               </li>
-              <li class="nav-item" role="presentation">
+              <li className="nav-item" role="presentation">
                 <button
-                  class="nav-link"
+                  className="nav-link"
                   id="pills-profile-tab"
                   data-bs-toggle="pill"
                   data-bs-target="#pills-profile"
@@ -249,9 +249,9 @@ function Home() {
                   Air Conditioner
                 </button>
               </li>
-              <li class="nav-item" role="presentation">
+              <li className="nav-item" role="presentation">
                 <button
-                  class="nav-link"
+                  className="nav-link"
                   id="pills-contact-tab"
                   data-bs-toggle="pill"
                   data-bs-target="#pills-contact"
@@ -263,9 +263,9 @@ function Home() {
                   Television
                 </button>
               </li>
-              <li class="nav-item" role="presentation">
+              <li className="nav-item" role="presentation">
                 <button
-                  class="nav-link"
+                  className="nav-link"
                   id="pills-disabled-tab"
                   data-bs-toggle="pill"
                   data-bs-target="#pills-disabled"
@@ -280,23 +280,23 @@ function Home() {
             </ul>
           </div>
           <div className="col-lg-6">
-            <div class="input-group mb-3">
+            <div className="input-group mb-3">
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="Search"
                 aria-label="Username"
                 aria-describedby="basic-addon1"
               ></input>
-              <span class="input-group-text" id="basic-addon1">
+              <span className="input-group-text" id="basic-addon1">
                 <BsSearch />
               </span>
             </div>
           </div>
         </div>
-        <div class="tab-content" id="pills-tabContent">
+        <div className="tab-content" id="pills-tabContent">
           <div
-            class="tab-pane fade show active"
+            className="tab-pane fade show active"
             id="pills-home"
             role="tabpanel"
             aria-labelledby="pills-home-tab"
@@ -304,7 +304,7 @@ function Home() {
           >
             <div className="row">
               {data.map((v, k) => {
-                if (v.type == "Headphone") {
+                if (v.type === "Headphone") {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
@@ -320,7 +320,7 @@ function Home() {
             </div>
           </div>
           <div
-            class="tab-pane fade"
+            className="tab-pane fade"
             id="pills-profile"
             role="tabpanel"
             aria-labelledby="pills-profile-tab"
@@ -328,7 +328,7 @@ function Home() {
           >
             <div className="row">
               {data.map((v, k) => {
-                if (v.type == "Air Conditioner") {
+                if (v.type === "Air Conditioner") {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
@@ -344,7 +344,7 @@ function Home() {
             </div>
           </div>
           <div
-            class="tab-pane fade"
+            className="tab-pane fade"
             id="pills-contact"
             role="tabpanel"
             aria-labelledby="pills-contact-tab"
@@ -352,7 +352,7 @@ function Home() {
           >
             <div className="row">
               {data.map((v, k) => {
-                if (v.type == "Television") {
+                if (v.type === "Television") {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
@@ -368,7 +368,7 @@ function Home() {
             </div>
           </div>
           <div
-            class="tab-pane fade"
+            className="tab-pane fade"
             id="pills-disabled"
             role="tabpanel"
             aria-labelledby="pills-disabled-tab"
@@ -376,7 +376,7 @@ function Home() {
           >
             <div className="row">
               {data.map((v, k) => {
-                if (v.type == "Router") {
+                if (v.type === "Router") {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
@@ -394,7 +394,7 @@ function Home() {
         </div>
 
         <div className="row">
-          <button type="button" class="home-button">
+          <button type="button" className="home-button">
             View all
           </button>
         </div>
