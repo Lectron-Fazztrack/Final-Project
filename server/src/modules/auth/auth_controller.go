@@ -30,12 +30,12 @@ func (a *auth_ctrl) Login(c *gin.Context) {
 }
 
 func (a *auth_ctrl) Register(c *gin.Context) {
-	var data *models.User
+	var data models.User
 
 	err := json.NewDecoder(c.Request.Body).Decode(&data)
 	if err != nil {
 		libs.New(err.Error(), 401, true)
 		c.Abort()
 	}
-	a.repo.SignUp(data).Send(c)
+	a.repo.SignUp(&data).Send(c)
 }

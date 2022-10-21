@@ -54,7 +54,7 @@ func (u auth_service) SignUp(body *models.User) *libs.Response {
 	body.Role = "user"
 	result, err := u.rep.Register(body)
 	if err != nil {
-		return libs.New("email already registered, please login", 401, true)
+		return libs.New(err.Error(), 401, true)
 	}
 	return libs.New(result, 200, false)
 }

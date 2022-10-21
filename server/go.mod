@@ -3,7 +3,6 @@ module github.com/Lectron-Fazztrack/Final-Project/server
 go 1.19
 
 require (
-	github.com/adiet95/go-order-api v0.0.0-20221018193810-b037bc3bf656
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-gormigrate/gormigrate/v2 v2.0.2
 	github.com/golang-jwt/jwt v3.2.2+incompatible

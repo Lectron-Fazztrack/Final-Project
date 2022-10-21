@@ -32,7 +32,7 @@ func (re *auth_repo) FindByEmail(email string) (*models.User, error) {
 func (re *auth_repo) Register(data *models.User) (*models.User, error) {
 	var datas *models.Users
 
-	res := re.db.Model(&datas).Where("email = ?", data.Email).Find(&data)
+	res := re.db.Model(&datas).Where("LOWER(email) = ?", data.Email).Find(&data)
 	if res.Error != nil {
 		return nil, errors.New("failed to find data")
 	}
@@ -40,7 +40,7 @@ func (re *auth_repo) Register(data *models.User) (*models.User, error) {
 		return nil, errors.New("email registered, go to login")
 	}
 
-	r := re.db.Create(data)
+	r := re.db.Model(&data).Create(data)
 	if r.Error != nil {
 		return nil, errors.New("failled to obtain data")
 	}
