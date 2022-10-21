@@ -6,8 +6,124 @@ import { BsSearch, BsBag, BsCashCoin, BsBox } from "react-icons/bs";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import "./style.css";
+import img from "../../img/product-example.png";
+import ModalAdd from "../../components/modal/modalAdd";
 
 function Home() {
+  const data = [
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Headphone",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Headphone",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Headphone",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Headphone",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Air Conditioner",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Air Conditioner",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Television",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Television",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Television",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Television",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Router",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Router",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Router",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Router",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Router",
+    },
+    {
+      product_name: "Sennheiser HD 25",
+      price: 3000,
+      rating: 4.9,
+      image: "",
+      type: "Router",
+    },
+  ];
   return (
     <div className="App">
       <Header />
@@ -48,6 +164,7 @@ function Home() {
           <br />
           Order Easily
         </div>
+        <ModalAdd />
         <div className="row">
           <div className="col-xl-4 col-lg-6">
             <div className="home-card">
@@ -186,15 +303,20 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                <CardOriginal />
-              </div>
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                <CardOriginal />
-              </div>
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                <CardOriginal />
-              </div>
+              {data.map((v, k) => {
+                if (v.type == "Headphone") {
+                  return (
+                    <div className="col-xl-4 col-lg-6 col-sm-12">
+                      <CardOriginal
+                        product_name={v.product_name}
+                        price={v.price}
+                        rate={v.rating}
+                        image={img}
+                      />
+                    </div>
+                  );
+                }
+              })}
             </div>
           </div>
           <div
@@ -205,12 +327,20 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                <CardOriginal />
-              </div>
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                <CardOriginal />
-              </div>
+              {data.map((v, k) => {
+                if (v.type == "Air Conditioner") {
+                  return (
+                    <div className="col-xl-4 col-lg-6 col-sm-12">
+                      <CardOriginal
+                        product_name={v.product_name}
+                        price={v.price}
+                        rate={v.rating}
+                        image={img}
+                      />
+                    </div>
+                  );
+                }
+              })}
             </div>
           </div>
           <div
@@ -221,24 +351,20 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                <CardOriginal />
-              </div>
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                <CardOriginal />
-              </div>
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                <CardOriginal />
-              </div>
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                <CardOriginal />
-              </div>
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                <CardOriginal />
-              </div>
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                <CardOriginal />
-              </div>
+              {data.map((v, k) => {
+                if (v.type == "Television") {
+                  return (
+                    <div className="col-xl-4 col-lg-6 col-sm-12">
+                      <CardOriginal
+                        product_name={v.product_name}
+                        price={v.price}
+                        rate={v.rating}
+                        image={img}
+                      />
+                    </div>
+                  );
+                }
+              })}
             </div>
           </div>
           <div
@@ -249,12 +375,20 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                <CardOriginal />
-              </div>
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                <CardOriginal />
-              </div>
+              {data.map((v, k) => {
+                if (v.type == "Router") {
+                  return (
+                    <div className="col-xl-4 col-lg-6 col-sm-12">
+                      <CardOriginal
+                        product_name={v.product_name}
+                        price={v.price}
+                        rate={v.rating}
+                        image={img}
+                      />
+                    </div>
+                  );
+                }
+              })}
             </div>
           </div>
         </div>
