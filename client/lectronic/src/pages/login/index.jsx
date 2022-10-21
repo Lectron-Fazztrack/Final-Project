@@ -64,7 +64,7 @@ function Login() {
         </form>
       </div>
 
-      <div className="mt-2 mr-2 sm:-ml-40 z-10 relative fazbg">
+      <div className="mt-2 mr-2 sm:-ml-40 relative fazbg">
         <img
           className="w-full"
           style={{ height: "97vmin" }}
