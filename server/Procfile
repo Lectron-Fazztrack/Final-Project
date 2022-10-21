@@ -1,1 +1,1 @@
-web: ./bin/server serve
+web: ./bin/Final-Project/server serve
