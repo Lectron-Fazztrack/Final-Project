@@ -21,6 +21,8 @@ type Product struct {
 
 type Review struct {
 	ReviewId uint    `gorm:"primaryKey" json:"id,omitempty"`
+	UserId   string  `gorm:"type:uuid;foreignKey:ReviewId;" json:"user_id"`
+	User     User    `json:"user"`
 	Rate     float32 `json:"rate"`
 	Comment  string  `json:"comment"`
 }
