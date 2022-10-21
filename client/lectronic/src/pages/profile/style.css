@@ -46,3 +46,68 @@
   right: 6vmin;
   bottom: -6.5vmin;
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 25px;
+  width: 12px;
+  height: 12px;
+  background: url("./img/calendar.png");
+  background-size: 100% 100%;
+}
+
+input {
+  position: relative;
+}
+
+input[type="date"]:before {
+  content: attr(placeholder);
+  color: #777777;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+  display: none;
+}
+
+.fazbtn {
+  display: flex;
+  background-color: white;
+  width: 24rem;
+  height: 2.3rem;
+  border-radius: 10px;
+  gap: 5px;
+}
+
+.fazbtn {
+  text-align: center;
+  width: 12rem;
+  border-radius: 10px;
+}
+
+.fazbackground {
+  background-color: #415fe7;
+}
+
+.fazwhite {
+  margin-left: 9px;
+  color: white;
+  font-size: small;
+}
+
+.fazcss2 {
+  margin-left: 9px;
+  font-size: small;
+}
+
+.fazcss {
+  margin-top: 8px;
+}
+
+.fazhvrsubmit:hover {
+  background-color: #0020b2;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
