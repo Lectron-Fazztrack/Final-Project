@@ -53,23 +53,18 @@ function Login() {
             </div>
           </div>
 
-          <div className="mt-5 ml-1">
-            <p
-              className="mt-4"
-              style={{ fontWeight: "bold", display: "flex", fontSize: "3vmin" }}
-            >
+          <div className="mt-5 ml-3">
+            <p className="mt-4" style={{ fontWeight: "bold", display: "flex" }}>
               Not registered yet?&nbsp;
               <Link to="/register" style={{ textDecoration: "none" }}>
-                <p style={{ color: "#0300AD", fontSize: "3vmin" }}>
-                  Create an Account
-                </p>
+                <p style={{ color: "#0300AD" }}>Create an Account</p>
               </Link>
             </p>
           </div>
         </form>
       </div>
 
-      <div className="mt-2 mr-2 sm:-ml-40 relative fazbg">
+      <div className="mt-2 mr-2 sm:-ml-40 z-10 relative fazbg">
         <img
           className="w-full"
           style={{ height: "97vmin" }}
