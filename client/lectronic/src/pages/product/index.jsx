@@ -1,9 +1,13 @@
 import React from "react";
 import CardOriginal from "../../components/card/cardOriginal";
+import subscribe from "../../img/subscribe.png";
+import homebanner from "../../img/homebanner.png";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
-import "./style.css";
+import style from "./style.module.css";
 import img from "../../img/product-example.png";
+import { BsPerson, BsBagCheck, BsSearch } from "react-icons/bs";
+import { InputGroup, FormControl, Button } from "react-bootstrap";
 
 function Product() {
   const data = [
@@ -123,6 +127,25 @@ function Product() {
   return (
     <div className="App">
       <Header />
+      <InputGroup className={style.parent}>
+        <FormControl
+          className={style.input_search}
+          placeholder="Tap To Search For Something"
+          aria-label="Tap To Search For Something"
+          aria-describedby="basic-addon2"
+        />
+        <Button className={style.btn_search} id="button-addon2">
+          <img src={BsSearch} alt="" />
+        </Button>
+        <div>
+          <Button className={style.btn_w}>
+            <img src={BsPerson} alt="" />
+          </Button>
+          <Button className={style.btn_w}>
+            <img src={BsBagCheck} alt="" />
+          </Button>
+        </div>
+      </InputGroup>
       <div className="container">
         <div className="row mb-5">
           <ul className="nav nav-pills" id="pills-tab" role="tablist">
