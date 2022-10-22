@@ -15,7 +15,7 @@ type Response struct {
 }
 
 func (res *Response) Send(c *gin.Context) {
-	// c.Writer.Header().Set("Content-Type", "application/json")
+	c.Writer.Header().Set("Content-Type", "application/json")
 
 	if res.IsError {
 		c.Writer.WriteHeader(res.Code)

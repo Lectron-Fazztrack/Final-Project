@@ -41,7 +41,6 @@ func (re *prod_ctrl) GetByType(c *gin.Context) {
 
 func (re *prod_ctrl) AddProduct(c *gin.Context) {
 	c.Writer.Header().Set("Content-Type", "multipart/form-data")
-
 	var decoder = schema.NewDecoder()
 	var data models.Product
 
