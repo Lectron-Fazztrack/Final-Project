@@ -1,7 +1,5 @@
 import React from "react";
 import CardOriginal from "../../components/card/cardOriginal";
-import subscribe from "../../img/subscribe.png";
-import homebanner from "../../img/homebanner.png";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import style from "./style.module.css";
@@ -135,19 +133,19 @@ function Product() {
           aria-describedby="basic-addon2"
         />
         <Button className={style.btn_search} id="button-addon2">
-          <img src={BsSearch} alt="" />
+          <BsSearch className={style.bs_icon} />
         </Button>
         <div>
           <Button className={style.btn_w}>
-            <img src={BsPerson} alt="" />
+            <BsPerson className={style.bs_icon} />
           </Button>
           <Button className={style.btn_w}>
-            <img src={BsBagCheck} alt="" />
+            <BsBagCheck className={style.bs_icon} />
           </Button>
         </div>
       </InputGroup>
       <div className="container">
-        <div className="row mb-5">
+        <div className="row mb-5 mt-5">
           <ul className="nav nav-pills" id="pills-tab" role="tablist">
             <li className="nav-item" role="presentation">
               <button
