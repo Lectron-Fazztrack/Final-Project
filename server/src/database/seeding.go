@@ -22,12 +22,30 @@ func seeder(cmd *cobra.Command, args []string) error {
 	admin, _ := libs.HashPassword("admin12345678")
 	user, _ := libs.HashPassword("user12345678")
 
-	var datas = []models.User{
+	var data1 = []models.User{
 		{Email: "admin@gmail.com", Password: admin, Role: "admin"},
 		{Email: "user@gmail.com", Password: user, Role: "user"},
 	}
+	var data2 = []models.Product{
+		{Name: "admin@gmail.com"},
+	}
+	var data3 = []models.Review{
+		{Comment: "admin@gmail.com"},
+	}
+	var data4 = []models.Checkout{
+		{CheckoutName: "admin@gmail.com"},
+	}
 
-	if res := db.Create(&datas); res.Error != nil {
+	if res := db.Create(&data1); res.Error != nil {
+		return res.Error
+	}
+	if res := db.Create(&data2); res.Error != nil {
+		return res.Error
+	}
+	if res := db.Create(&data3); res.Error != nil {
+		return res.Error
+	}
+	if res := db.Create(&data4); res.Error != nil {
 		return res.Error
 	}
 	log.Println("Seeding successful")
