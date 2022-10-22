@@ -47,7 +47,7 @@ func (re *prod_ctrl) AddProduct(c *gin.Context) {
 		libs.New("claim user is not exist", 400, true)
 		c.Abort()
 	}
-
+	//file upload
 	image := file.(string)
 	data.Image = image
 
