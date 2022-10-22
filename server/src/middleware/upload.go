@@ -11,7 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Cloudinary(gin.HandlerFunc) gin.HandlerFunc {
+func Cloudinary() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		//**parse multipart/form-data
 		if isErr := c.Request.ParseMultipartForm(20 << 20); isErr != nil {
@@ -50,7 +50,7 @@ func Cloudinary(gin.HandlerFunc) gin.HandlerFunc {
 			c.Abort()
 		}
 
-		c.Set("imageName", upload.SecureURL)
+		c.Set("image", upload.SecureURL)
 		c.Next()
 	}
 }

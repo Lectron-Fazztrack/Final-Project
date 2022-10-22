@@ -13,9 +13,7 @@ func New(rt *gin.Engine, db *gorm.DB) {
 
 	route := rt.Group("/products")
 	{
-		//route.POST("", middleware.CheckAuthor(), middleware.Cloudinary(ctrl.AddProduct))
-		route.POST("", middleware.CheckAuthor(), ctrl.AddProduct)
-
+		route.POST("", middleware.CheckAuthor(), middleware.Cloudinary(), ctrl.AddProduct)
 		route.GET("/:id", ctrl.GetById)
 		route.GET("", ctrl.GetAllProduct)
 		route.GET("/types/:type", ctrl.GetByType)

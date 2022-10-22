@@ -43,7 +43,9 @@ func (r *prod_repo) FindByType(types string) (*models.Products, error) {
 	}
 	return datas, nil
 }
+
 func (r *prod_repo) Save(data *models.Product) (*models.Product, error) {
+
 	result := r.db.Create(data)
 	if result.Error != nil {
 		return nil, errors.New("failled to obtain data")
