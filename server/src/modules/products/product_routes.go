@@ -14,11 +14,12 @@ func New(rt *gin.Engine, db *gorm.DB) {
 	route := rt.Group("/products")
 	{
 		route.POST("", middleware.Cloudinary(), ctrl.AddProduct)
-		// route.POST("", middleware.CheckAuthor(), ctrl.AddProduct)
+		route.PUT("/:id", middleware.Cloudinary(), ctrl.UpdateProduct)
+		route.DELETE("/:id", ctrl.DeleteProduct)
 
 		route.GET("/:id", ctrl.GetById)
 		route.GET("", ctrl.GetAllProduct)
-		route.GET("types/:type", ctrl.GetByType)
+		route.GET("/types/:type", ctrl.GetByType)
 	}
 
 }
