@@ -39,8 +39,9 @@ func (re *co_service) Checkout(data *models.Checkout, email string) *libs.Respon
 	if err != nil {
 		return libs.New(err.Error(), 400, true)
 	}
-	data.UserId = res.UserId
-	data.CheckoutName = "Pesanan" + res.Name
+	temp := res.UserId
+	data.UserId = temp
+	data.User.Email = res.Email
 
 	result, err := re.co_repo.Save(data)
 	if err != nil {

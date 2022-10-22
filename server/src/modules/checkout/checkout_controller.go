@@ -44,6 +44,6 @@ func (re *co_ctrl) Checkout(c *gin.Context) {
 	re.svc.Checkout(&data, email).Send(c)
 }
 
-func AddReview() {
+// func AddReview() {
 
-}
+// }
