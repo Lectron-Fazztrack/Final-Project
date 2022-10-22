@@ -4,11 +4,11 @@ import "time"
 
 type Checkout struct {
 	CheckoutId   uint      `gorm:"primaryKey" json:"id,omitempty"`
-	CheckoutName string    `json:"order_name"`
+	CheckoutName string    `json:"checkout_name"`
 	UserId       string    `gorm:"type:uuid;" json:"user_id"`
 	User         User      `json:"user"`
-	ProductId    int       `json:"product_id"`
-	Product      []Product `json:"product"`
+	ProductId    uint      `gorm:"type:uint" json:"product_id"`
+	Product      []Product `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"product"`
 	DelivAddress string    `json:"image"`
 	Notes        string    `json:"stock"`
 	Discount     int       `json:"telphone"`

@@ -44,3 +44,19 @@ func (re *prod_servcie) Add(data *models.Product) *libs.Response {
 	return libs.New(result, 201, false)
 
 }
+func (re *prod_servcie) Update(data *models.Product, id string) *libs.Response {
+
+	result, err := re.prod_repo.Update(data, id)
+	if err != nil {
+		return libs.New(err.Error(), 400, true)
+	}
+	return libs.New(result, 201, false)
+}
+
+func (re *prod_servcie) Delete(id string) *libs.Response {
+	data, err := re.prod_repo.Delete(id)
+	if err != nil {
+		return libs.New(err.Error(), 400, true)
+	}
+	return libs.New(data, 200, false)
+}

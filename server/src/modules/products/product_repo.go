@@ -24,8 +24,8 @@ func (r *prod_repo) FindAll(limit, offset int) (*models.Products, error) {
 	}
 	return datas, nil
 }
-func (r *prod_repo) FindById(id string) (*models.Products, error) {
-	var datas *models.Products
+func (r *prod_repo) FindById(id string) (*models.Product, error) {
+	var datas *models.Product
 
 	result := r.db.First(&datas, "product_id = ?", id)
 	if result.Error != nil {
@@ -52,4 +52,21 @@ func (r *prod_repo) Save(data *models.Product) (*models.Product, error) {
 	}
 
 	return data, nil
+}
+func (r *prod_repo) Update(data *models.Product, id string) (*models.Product, error) {
+	result := r.db.Model(&data).Where("product_id = ?", id).Updates(&data)
+	if result.Error != nil {
+		return nil, errors.New("failled to obtain data")
+	}
+
+	return data, nil
+}
+func (r *prod_repo) Delete(id string) (*models.Products, error) {
+	var datas *models.Products
+
+	result := r.db.Where("product_id", id).Delete(&datas)
+	if result.Error != nil {
+		return nil, errors.New("data not found!")
+	}
+	return datas, nil
 }

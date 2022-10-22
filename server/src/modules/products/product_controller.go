@@ -1,6 +1,7 @@
 package products
 
 import (
+	"fmt"
 	"strconv"
 
 	"github.com/Lectron-Fazztrack/Final-Project/server/src/database/models"
@@ -46,17 +47,49 @@ func (re *prod_ctrl) AddProduct(c *gin.Context) {
 
 	file, exist := c.Get("image")
 	if !exist {
-		libs.New("file not exist", 400, true)
+		libs.New("claim user is not exist", 400, true)
 		c.Abort()
 	}
 
 	//file upload
 	image := file.(string)
 	data.Image = image
+	fmt.Println(data.Name)
 	err := decoder.Decode(&data, c.Request.PostForm)
 	if err != nil {
 		libs.New(err.Error(), 400, true)
 		c.Abort()
 	}
 	re.svc.Add(&data).Send(c)
+}
+func (re *prod_ctrl) UpdateProduct(c *gin.Context) {
+	c.Writer.Header().Set("Content-Type", "multipart/form-data")
+
+	id := c.Param("id")
+
+	var decoder = schema.NewDecoder()
+	var data models.Product
+
+	file, exist := c.Get("image")
+	if !exist {
+		libs.New("file not exist", 400, true)
+		c.Abort()
+	}
+	//file upload
+	image := file.(string)
+	data.Image = image
+	fmt.Println(data.Name)
+	err := decoder.Decode(&data, c.Request.PostForm)
+	if err != nil {
+		libs.New(err.Error(), 400, true)
+		c.Abort()
+
+	}
+	re.svc.Update(&data, id).Send(c)
+}
+
+func (re *prod_ctrl) DeleteProduct(c *gin.Context) {
+	id := c.Param("id")
+	re.svc.Delete(id).Send(c)
+
 }
