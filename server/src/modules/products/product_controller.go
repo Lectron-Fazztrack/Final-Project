@@ -2,7 +2,6 @@ package products
 
 import (
 	"encoding/json"
-	"fmt"
 	"strconv"
 
 	"github.com/Lectron-Fazztrack/Final-Project/server/src/database/models"
@@ -43,11 +42,15 @@ func (re *prod_ctrl) GetByType(c *gin.Context) {
 func (re *prod_ctrl) AddProduct(c *gin.Context) {
 	var data models.Product
 
-	file := c.Request.Context().Value("imageName")
-	if file != nil {
-		data.Image = file.(string)
+	file, exist := c.Get("image")
+	if !exist {
+		libs.New("claim user is not exist", 400, true)
+		c.Abort()
 	}
-	fmt.Println(data.Image)
+
+	image := file.(string)
+	data.Image = image
+
 	err := json.NewDecoder(c.Request.Body).Decode(&data)
 	if err != nil {
 		libs.New(err.Error(), 400, true)
