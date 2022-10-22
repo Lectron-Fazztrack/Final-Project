@@ -1,7 +1,5 @@
 import React from "react";
 import CardOriginal from "../../components/card/cardOriginal";
-import subscribe from "../../img/subscribe.png";
-import homebanner from "../../img/homebanner.png";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import "./style.css";
