@@ -51,7 +51,9 @@ func (u auth_service) SignUp(body *models.User) *libs.Response {
 	}
 
 	body.Password = hassPass
-	body.Role = "user"
+	if body.Role != "admin" {
+		body.Role = "user"
+	}
 	result, err := u.rep.Register(body)
 	if err != nil {
 		return libs.New(err.Error(), 401, true)
