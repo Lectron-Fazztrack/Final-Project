@@ -13,7 +13,7 @@ function Routers() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/product" element={<Product />} />
+        <Route exact path="/products" element={<Product />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/user" element={<User />} />

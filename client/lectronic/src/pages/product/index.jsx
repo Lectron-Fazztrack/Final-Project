@@ -1,130 +1,151 @@
-import React from "react";
-import CardOriginal from "../../components/card/cardOriginal";
-import subscribe from "../../img/subscribe.png";
-import homebanner from "../../img/homebanner.png";
-import Header from "../../components/header/header";
-import Footer from "../../components/footer/footer";
-import "./style.css";
-import img from "../../img/product-example.png";
+import React from 'react'
+import CardOriginal from '../../components/card/cardOriginal'
+import subscribe from '../../img/subscribe.png'
+import homebanner from '../../img/homebanner.png'
+import Header from '../../components/header/header'
+import Footer from '../../components/footer/footer'
+import style from './style.module.css'
+import img from '../../img/product-example.png'
+import { BsPerson, BsBagCheck, BsSearch } from 'react-icons/bs'
+import { InputGroup, FormControl, Button } from 'react-bootstrap'
 
 function Product() {
   const data = [
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Headphone",
+      image: '',
+      type: 'Headphone'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Headphone",
+      image: '',
+      type: 'Headphone'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Headphone",
+      image: '',
+      type: 'Headphone'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Headphone",
+      image: '',
+      type: 'Headphone'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Air Conditioner",
+      image: '',
+      type: 'Air Conditioner'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Air Conditioner",
+      image: '',
+      type: 'Air Conditioner'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Television",
+      image: '',
+      type: 'Television'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Television",
+      image: '',
+      type: 'Television'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Television",
+      image: '',
+      type: 'Television'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Television",
+      image: '',
+      type: 'Television'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Router",
+      image: '',
+      type: 'Router'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Router",
+      image: '',
+      type: 'Router'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Router",
+      image: '',
+      type: 'Router'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Router",
+      image: '',
+      type: 'Router'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Router",
+      image: '',
+      type: 'Router'
     },
     {
-      product_name: "Sennheiser HD 25",
+      product_name: 'Sennheiser HD 25',
       price: 3000,
       rating: 4.9,
-      image: "",
-      type: "Router",
-    },
-  ];
+      image: '',
+      type: 'Router'
+    }
+  ]
   return (
     <div className="App">
       <Header />
+      <InputGroup className={style.parent}>
+        <FormControl
+          className={style.input_search}
+          placeholder="Tap To Search For Something"
+          aria-label="Tap To Search For Something"
+          aria-describedby="basic-addon2"
+        />
+        <Button className={style.btn_search} id="button-addon2">
+          <img src={BsSearch} alt="" />
+        </Button>
+        <div>
+          <Button className={style.btn_w}>
+            <img src={BsPerson} alt="" />
+          </Button>
+          <Button className={style.btn_w}>
+            <img src={BsBagCheck} alt="" />
+          </Button>
+        </div>
+      </InputGroup>
       <div className="container">
         <div className="row mb-5">
           <ul className="nav nav-pills" id="pills-tab" role="tablist">
@@ -196,7 +217,7 @@ function Product() {
           >
             <div className="row">
               {data.map((v, k) => {
-                if (v.type === "Headphone") {
+                if (v.type === 'Headphone') {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
@@ -206,7 +227,7 @@ function Product() {
                         image={img}
                       />
                     </div>
-                  );
+                  )
                 }
               })}
             </div>
@@ -220,7 +241,7 @@ function Product() {
           >
             <div className="row">
               {data.map((v, k) => {
-                if (v.type === "Air Conditioner") {
+                if (v.type === 'Air Conditioner') {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
@@ -230,7 +251,7 @@ function Product() {
                         image={img}
                       />
                     </div>
-                  );
+                  )
                 }
               })}
             </div>
@@ -244,7 +265,7 @@ function Product() {
           >
             <div className="row">
               {data.map((v, k) => {
-                if (v.type === "Television") {
+                if (v.type === 'Television') {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
@@ -254,7 +275,7 @@ function Product() {
                         image={img}
                       />
                     </div>
-                  );
+                  )
                 }
               })}
             </div>
@@ -268,7 +289,7 @@ function Product() {
           >
             <div className="row">
               {data.map((v, k) => {
-                if (v.type === "Router") {
+                if (v.type === 'Router') {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
@@ -278,7 +299,7 @@ function Product() {
                         image={img}
                       />
                     </div>
-                  );
+                  )
                 }
               })}
             </div>
@@ -318,7 +339,7 @@ function Product() {
       </div>
       <Footer />
     </div>
-  );
+  )
 }
 
-export default Product;
+export default Product

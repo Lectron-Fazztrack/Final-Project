@@ -48,7 +48,7 @@ function Cart() {
           <Button className={style.btn_search} id="button-addon2">
             <img src={butSearch} alt="" />
           </Button>
-          <div className={style.but_alt}>
+          <div>
             <Button className={style.btn_w}>
               <img src={person} alt="" />
             </Button>
