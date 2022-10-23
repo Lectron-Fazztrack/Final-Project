@@ -40,26 +40,6 @@ func (re *user_service) Update(data *models.User, email string) *libs.Response {
 		return libs.New(err.Error(), 400, true)
 	}
 
-	if oldData.Role == "admin" {
-		valid := libs.Validation(data.Email, data.Password)
-		if valid != nil {
-			return libs.New(valid.Error(), 400, true)
-		}
-
-		//Hasing New Password and update data
-		hassPass, err := libs.HashPassword(data.Password)
-		if err != nil {
-			return libs.New(err.Error(), 400, true)
-		}
-		data.Password = hassPass
-
-		result, err := re.user_repo.UpdateUser(data, email)
-		if err != nil {
-			return libs.New(err.Error(), 400, true)
-		}
-		return libs.New(result, 202, false)
-	}
-
 	valid := libs.Validation(data.Email, data.Password)
 	if valid != nil {
 		return libs.New(valid.Error(), 400, true)
