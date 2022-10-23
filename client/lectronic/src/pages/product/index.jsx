@@ -3,7 +3,6 @@ import CardOriginal from "../../components/card/cardOriginal";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import style from "./style.module.css";
-import img from "../../img/product-example.png";
 import { BsPerson, BsBagCheck, BsSearch } from "react-icons/bs";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import axios from "axios";

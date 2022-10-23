@@ -6,8 +6,6 @@ import { BsSearch, BsBag, BsCashCoin, BsBox } from "react-icons/bs";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import "./style.css";
-import img from "../../img/product-example.png";
-import ModalAdd from "../../components/modal/modalAdd";
 import axios from "axios";
 
 function Home() {
@@ -226,7 +224,8 @@ function Home() {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
-                        product_name={v.product_name}
+                        id={v.id}
+                        name={v.name}
                         price={v.price}
                         rate={v.rating}
                         image={v.image}
@@ -250,7 +249,7 @@ function Home() {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
-                        product_name={v.product_name}
+                        name={v.name}
                         price={v.price}
                         rate={v.rating}
                         image={v.image}
@@ -274,7 +273,7 @@ function Home() {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
-                        product_name={v.product_name}
+                        name={v.name}
                         price={v.price}
                         rate={v.rating}
                         image={v.image}
@@ -298,7 +297,7 @@ function Home() {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
-                        product_name={v.product_name}
+                        name={v.name}
                         price={v.price}
                         rate={v.rating}
                         image={v.image}

@@ -1,0 +1,13 @@
+.detail-title {
+  color: #333;
+  font-size: 60px;
+  font-weight: 800;
+  margin-bottom: 24;
+}
+
+.detail-subtitle {
+  color: #777;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}

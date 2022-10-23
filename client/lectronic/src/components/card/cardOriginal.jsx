@@ -6,11 +6,11 @@ import "./style.css";
 function CardOriginal(props) {
   const navigate = useNavigate();
   const detail = () => {
-    navigate("/product");
+    navigate("/products/detail/" + props.id);
   };
   return (
     <div className="card-original">
-      <div className="card-title">{props.product_name}</div>
+      <div className="card-title">{props.name}</div>
       <div className="row">
         <div className="col-6 card-price">${props.price}</div>
         <div className="col-6 card-rating">{props.rate}</div>
