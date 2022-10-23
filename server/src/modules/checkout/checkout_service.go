@@ -43,6 +43,12 @@ func (re *co_service) Checkout(data *models.Checkout, email string) *libs.Respon
 	data.UserId = temp
 	data.User.Email = res.Email
 
+	// res2, err := re.co_repo.GetProductId(data.ProductId)
+	// if err != nil {
+	// 	return libs.New(err.Error(), 400, true)
+	// }
+
+	// data.Product = &res2
 	result, err := re.co_repo.Save(data)
 	if err != nil {
 		return libs.New(err.Error(), 400, true)
