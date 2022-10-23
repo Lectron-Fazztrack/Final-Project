@@ -30,6 +30,7 @@ func (re *prod_servcie) GetId(id string) *libs.Response {
 }
 func (re *prod_servcie) GetType(types string) *libs.Response {
 	data, err := re.prod_repo.FindByType(types)
+
 	if err != nil {
 		return libs.New(err.Error(), 400, true)
 	}
