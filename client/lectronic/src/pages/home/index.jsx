@@ -229,7 +229,7 @@ function Home() {
                         product_name={v.product_name}
                         price={v.price}
                         rate={v.rating}
-                        image={img}
+                        image={v.image}
                       />
                     </div>
                   );
@@ -253,7 +253,7 @@ function Home() {
                         product_name={v.product_name}
                         price={v.price}
                         rate={v.rating}
-                        image={img}
+                        image={v.image}
                       />
                     </div>
                   );
@@ -277,7 +277,7 @@ function Home() {
                         product_name={v.product_name}
                         price={v.price}
                         rate={v.rating}
-                        image={img}
+                        image={v.image}
                       />
                     </div>
                   );
@@ -301,7 +301,7 @@ function Home() {
                         product_name={v.product_name}
                         price={v.price}
                         rate={v.rating}
-                        image={img}
+                        image={v.image}
                       />
                     </div>
                   );
