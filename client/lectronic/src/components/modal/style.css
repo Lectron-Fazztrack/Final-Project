@@ -28,6 +28,8 @@
 
 .modal-add-button {
   background: #0300ad;
+  color: #fff;
   width: 130px;
   height: 130px;
+  border-radius: 10px;
 }

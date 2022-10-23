@@ -83,7 +83,6 @@ function Home() {
           <br />
           Order Easily
         </div>
-        <ModalAdd />
         <div className="row">
           <div className="col-xl-4 col-lg-6">
             <div className="home-card">

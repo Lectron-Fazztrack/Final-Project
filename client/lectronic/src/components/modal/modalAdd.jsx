@@ -60,7 +60,7 @@ function ModalAdd() {
     <div>
       <button
         type="button"
-        class="btn modal-add-button"
+        class="modal-add-button"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
