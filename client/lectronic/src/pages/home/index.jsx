@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardOriginal from "../../components/card/cardOriginal";
 import subscribe from "../../img/subscribe.png";
 import homebanner from "../../img/homebanner.png";
@@ -8,122 +8,41 @@ import Footer from "../../components/footer/footer";
 import "./style.css";
 import img from "../../img/product-example.png";
 import ModalAdd from "../../components/modal/modalAdd";
+import axios from "axios";
 
 function Home() {
-  const data = [
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Headphone",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Headphone",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Headphone",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Headphone",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Air Conditioner",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Air Conditioner",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Television",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Television",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Television",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Television",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Router",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Router",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Router",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Router",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Router",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Router",
-    },
-  ];
+  const [headphone, setHeadphone] = useState([]);
+  const [airConditioner, setAirConditioner] = useState([]);
+  const [television, setTelevision] = useState([]);
+  const [router, setRouter] = useState([]);
+
+  const getProducts = async () => {
+    try {
+      const { data: headphone } = await axios.get(
+        process.env.REACT_APP_BASE_URL + "products/types/Headphone"
+      );
+      const { data: airConditioner } = await axios.get(
+        process.env.REACT_APP_BASE_URL + "products/types/Conditioner"
+      );
+      const { data: television } = await axios.get(
+        process.env.REACT_APP_BASE_URL + "products/types/Television"
+      );
+      const { data: router } = await axios.get(
+        process.env.REACT_APP_BASE_URL + "products/types/Router"
+      );
+      setHeadphone(headphone.data);
+      setAirConditioner(airConditioner.data);
+      setTelevision(television.data);
+      setRouter(router.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
     <div className="App">
       <Header />
@@ -303,8 +222,8 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              {data.map((v, k) => {
-                if (v.type === "Headphone") {
+              {headphone.map((v, k) => {
+                if (k < 6) {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
@@ -327,8 +246,8 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              {data.map((v, k) => {
-                if (v.type === "Air Conditioner") {
+              {airConditioner.map((v, k) => {
+                if (k < 6) {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
@@ -351,8 +270,8 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              {data.map((v, k) => {
-                if (v.type === "Television") {
+              {television.map((v, k) => {
+                if (k < 6) {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
@@ -375,8 +294,8 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              {data.map((v, k) => {
-                if (v.type === "Router") {
+              {router.map((v, k) => {
+                if (k < 6) {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
