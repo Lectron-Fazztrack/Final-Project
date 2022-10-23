@@ -1,12 +1,10 @@
 import { InputGroup, FormControl, Button, Card } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import style from './cart.module.css'
-import cart from './cart.png'
-import person from './person.png'
-import butSearch from './search.png'
 import Header from '../../components/header/header'
 import CardCart from '../../components/cart/comCart'
 import FormCheckInput from 'react-bootstrap/esm/FormCheckInput'
+import { BsPerson, BsBagCheck, BsSearch } from 'react-icons/bs'
 
 function Cart() {
   const navigate = useNavigate()
@@ -46,14 +44,14 @@ function Cart() {
             aria-describedby="basic-addon2"
           />
           <Button className={style.btn_search} id="button-addon2">
-            <img src={butSearch} alt="" />
+            <BsSearch className={style.bs_icon} />
           </Button>
           <div>
             <Button className={style.btn_w}>
-              <img src={person} alt="" />
+              <BsPerson className={style.bs_icon} />
             </Button>
             <Button className={style.btn_w}>
-              <img src={cart} alt="" />
+              <BsBagCheck className={style.bs_icon} />
             </Button>
           </div>
         </InputGroup>
