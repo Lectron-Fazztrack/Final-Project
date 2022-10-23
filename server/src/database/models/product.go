@@ -4,9 +4,9 @@ import "time"
 
 type Product struct {
 	ProductId   uint      `gorm:"primaryKey" json:"id,omitempty"`
-	ProductName string    `json:"productname"`
-	ReviewId    int       `json:"review_id"`
-	Review      []Review  `gorm:"foreignKey:ReviewId;" json:"review"`
+	ReviewId    uint      `gorm:"type:uint" json:"review_id"`
+	Review      []Review  `gorm:"foreignKey:ReviewId;type:uint;references:ReviewId;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;" json:"review"`
+	Name        string    `json:"name"`
 	Image       string    `json:"image"`
 	Stock       string    `json:"stock"`
 	Telphone    int       `json:"telphone"`
@@ -21,11 +21,10 @@ type Product struct {
 
 type Review struct {
 	ReviewId uint    `gorm:"primaryKey" json:"id,omitempty"`
-	UserId   string  `gorm:"type:uuid;foreignKey:ReviewId;" json:"user_id"`
+	UserId   string  `gorm:"type:uuid;foreignKey:UserId;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;" json:"user_id"`
 	User     User    `json:"user"`
 	Rate     float32 `json:"rate"`
 	Comment  string  `json:"comment"`
 }
-
 type Reviews []Review
 type Products []Product

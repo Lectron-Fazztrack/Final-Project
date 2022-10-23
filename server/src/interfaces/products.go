@@ -11,7 +11,7 @@ type ProductRepo interface {
 	Delete(id string) (*models.Products, error)
 
 	FindAll(limit, offset int) (*models.Products, error)
-	FindById(id string) (*models.Products, error)
+	FindById(id string) (*models.Product, error)
 	FindByType(types string) (*models.Products, error)
 }
 
