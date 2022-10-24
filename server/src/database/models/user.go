@@ -12,7 +12,7 @@ type User struct {
 	Phone     int       `json:"phone,omitempty"`
 	Gender    string    `json:"gender,omitempty"`
 	Image     string    `json:"image,omitempty"`
-	Date      time.Time `json:"date,omitempty"`
+	Date      string    `json:"date,omitempty"`
 	CreatedAt time.Time `gorm:"default:now(); not null" json:"created_at"`
 	UpdatedAt time.Time `gorm:"default:now(); not null" json:"updated_at"`
 }
