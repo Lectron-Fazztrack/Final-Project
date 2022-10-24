@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/Lectron-Fazztrack/Final-Project/server/src/database/models"
+	"github.com/Lectron-Fazztrack/Final-Project/server/src/libs"
 	"gorm.io/gorm"
 )
 
@@ -52,6 +53,13 @@ func (r *prod_repo) Save(data *models.Product) (*models.Product, error) {
 	return data, nil
 }
 func (r *prod_repo) Update(data *models.Product, id string) (*models.Product, error) {
+	var datas *models.Product
+
+	r.db.First(&datas, "product_id = ?", id)
+	if datas.Image != "" {
+		libs.CloudDelete(datas.Image)
+	}
+
 	result := r.db.Model(&data).Where("product_id = ?", id).Updates(&data)
 	if result.Error != nil {
 		return nil, errors.New("failled to obtain data")
@@ -59,8 +67,13 @@ func (r *prod_repo) Update(data *models.Product, id string) (*models.Product, er
 
 	return data, nil
 }
-func (r *prod_repo) Delete(id string) (*models.Products, error) {
-	var datas *models.Products
+func (r *prod_repo) Delete(id string) (*models.Product, error) {
+	var datas *models.Product
+
+	r.db.First(&datas, "product_id = ?", id)
+	if datas.Image != "" {
+		libs.CloudDelete(datas.Image)
+	}
 
 	result := r.db.Where("product_id", id).Delete(&datas)
 	if result.Error != nil {

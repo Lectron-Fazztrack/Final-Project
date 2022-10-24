@@ -7,8 +7,7 @@ type Checkout struct {
 	CheckoutName string    `json:"order_name"`
 	UserId       string    `gorm:"type:uuid" json:"user_id"`
 	User         User      `json:"user"`
-	ProductId    int       `json:"product_id"`
-	Product      []Product `gorm:"foreignKey:ProductId;" json:"review"`
+	ProductId    string    `json:"product_id"`
 	DelivAddress string    `json:"image"`
 	Notes        string    `json:"stock"`
 	Discount     int       `json:"telphone"`

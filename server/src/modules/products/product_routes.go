@@ -13,13 +13,10 @@ func New(rt *gin.Engine, db *gorm.DB) {
 
 	route := rt.Group("/products")
 	{
-		adminRoute := route.Group("").Use(middleware.CheckAuthor())
-		{
-			adminRoute.POST("", middleware.Cloudinary(), ctrl.AddProduct)
-			adminRoute.PUT("/:id", middleware.Cloudinary(), ctrl.UpdateProduct)
-			adminRoute.DELETE("/:id", ctrl.DeleteProduct)
-		}
 
+		route.POST("", middleware.CheckAuthor(), middleware.Cloudinary(), ctrl.AddProduct)
+		route.PUT("/:id", middleware.CheckAuthor(), middleware.Cloudinary(), ctrl.UpdateProduct)
+		route.DELETE("/:id", middleware.CheckAuthor(), ctrl.DeleteProduct)
 		route.GET("/:id", ctrl.GetById)
 		route.GET("", ctrl.GetAllProduct)
 		route.GET("/types/:type", ctrl.GetByType)
