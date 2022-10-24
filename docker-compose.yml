@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  backend:
+    build: ../server
+  frontend:
+    depends_on: database
+    build: ../client
