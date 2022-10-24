@@ -7,6 +7,7 @@ import FormCheckInput from 'react-bootstrap/esm/FormCheckInput'
 import { BsPerson, BsBagCheck, BsSearch } from 'react-icons/bs'
 import { useEffect, useState } from 'react'
 import useApi from '../../helpers/api'
+import withAuth from '../../helpers/withAuth'
 
 function Cart() {
   const navigate = useNavigate()
@@ -116,4 +117,4 @@ function Cart() {
   )
 }
 
-export default Cart
+export default withAuth(Cart)
