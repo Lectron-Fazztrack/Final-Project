@@ -108,6 +108,10 @@ function Profile() {
     }
   };
 
+  const thePwd = () => {
+    setPwd(pw);
+  };
+
   return (
     <div style={{ marginBottom: "80px" }}>
       <Row className="fazprof1">
@@ -304,7 +308,7 @@ function Profile() {
               variant="outline-secondary"
               id="button-addon2"
               style={{ color: "#415FE7" }}
-              onClick={setPwd(pw)}
+              onClick={thePwd}
             >
               Change
             </Button>
