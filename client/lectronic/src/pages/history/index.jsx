@@ -60,11 +60,11 @@ function History() {
             return (
               <CardHistory
                 id={v.id}
-                name={v.name}
-                price={v.price}
-                type={v.type}
-                image={v.image}
-                total={v.total}
+                name={v.Products.name}
+                price={v.Products.price}
+                type={v.Products.type}
+                image={v.Products.image}
+                total={v.Products.price}
               />
             );
           })}
