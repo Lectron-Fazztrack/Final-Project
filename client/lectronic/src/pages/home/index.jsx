@@ -23,6 +23,10 @@ function Home() {
   const { isAuth } = useSelector((state) => state.users);
   const api = useApi();
 
+  const viewAll = () => {
+    navigate("/products");
+  };
+
   const logOut = () => {
     dispatch(logout());
     navigate("/");
@@ -276,6 +280,7 @@ function Home() {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
+                        id={v.id}
                         name={v.name}
                         price={v.price}
                         rate={v.rating}
@@ -300,6 +305,7 @@ function Home() {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
+                        id={v.id}
                         name={v.name}
                         price={v.price}
                         rate={v.rating}
@@ -324,6 +330,7 @@ function Home() {
                   return (
                     <div className="col-xl-4 col-lg-6 col-sm-12">
                       <CardOriginal
+                        id={v.id}
                         name={v.name}
                         price={v.price}
                         rate={v.rating}
@@ -338,7 +345,7 @@ function Home() {
         </div>
 
         <div className="row">
-          <button type="button" className="home-button">
+          <button onClick={viewAll} type="button" className="home-button">
             View all
           </button>
         </div>
