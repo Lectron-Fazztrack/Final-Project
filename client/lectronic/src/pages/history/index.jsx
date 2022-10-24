@@ -5,10 +5,32 @@ import style from "./style.module.css";
 import { BsBagCheck, BsSearch } from "react-icons/bs";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import CardHistory from "../../components/card/cardHistory";
+import useApi from "../../helpers/api";
 import "./style.css";
 
 function History() {
   const [history, setHistory] = useState([]);
+  const api = useApi();
+
+  const getHistory = () => {
+    api
+      .req({
+        method: "GET",
+        url: `/histories`,
+      })
+      .then((res) => {
+        const { data } = res.data;
+        setHistory(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getHistory();
+  }, []);
 
   return (
     <div className="App">
@@ -34,6 +56,20 @@ function History() {
           <div className="history-title">Shopping History</div>
         </div>
         <div className="row mb-5 mt-5">
+          {history.map((v, k) => {
+            return (
+              <div className="col-xl-4 col-lg-6 col-sm-12">
+                {v.product_id}
+                <CardHistory
+                  id={v.id}
+                  name={v.name}
+                  price={v.price}
+                  rate={v.rating}
+                  image={v.image}
+                />
+              </div>
+            );
+          })}
           <CardHistory />
           <CardHistory />
           <CardHistory />
