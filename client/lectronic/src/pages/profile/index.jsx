@@ -23,7 +23,7 @@ function Profile() {
   const [bg2, setBg2] = useState(false);
   const [b, setB] = useState(false);
   const [birthdate, setBirthdate] = useState(new Date());
-  const [birthdateUser, setBirthdateUser] = useState(new Date());
+  // const [birthdateUser, setBirthdateUser] = useState(new Date());
   const [name1, setName1] = useState("");
   const [address, setAddress] = useState("");
   const [gender, setGender] = useState("");
@@ -32,11 +32,16 @@ function Profile() {
   const [countryID, setCountryID] = useState("");
   const [pw, setPw] = useState("");
 
+  const [data1, setData1] = useState("");
+  const [data2, setData2] = useState(new Date());
+  const [data3, setData3] = useState("");
+  const [data4, setData4] = useState("");
+  const [data5, setData5] = useState("");
+
   const handleDate = (e) => {
     setB(true);
     setBirthdate(e.target.value);
-    setBirthdateUser(birthdate);
-    console.log(birthdateUser);
+    // setBirthdateUser(birthdate);
   };
 
   const handleBg1 = () => {
@@ -52,42 +57,45 @@ function Profile() {
   };
 
   const hndlGender = () => {
-    if (gender === "Male") {
+    if (data4 === "Male") {
       setBg1(true);
       setBg2(false);
-    } else if (gender === "Female") {
+    } else if (data4 === "Female") {
       setBg1(false);
       setBg2(true);
     }
   };
 
   const getData = () => {
-    //** Waiting Backend Get User */
+    console.log(phone);
+    console.log(name1);
     api
       .req({
         url: "/user",
       })
       .then((res) => {
         // console.log(res.data.data);
-        setName1(res.data.data.name);
-        setBirthdateUser(res.data.data.date);
-        setAddress(res.data.data.address);
-        setGender(res.data.data.gender);
-        setPhone(res.data.data.phone);
-      });
+        setData1(res.data.data.name);
+        setData2(res.data.data.date);
+        setData3(res.data.data.address);
+        setData4(res.data.data.gender);
+        setData5(res.data.data.phone);
+      })
+      .catch((err) => console.log(err));
   };
 
   const updateData = () => {
+    console.log(birthdate);
     api
       .req({
         method: "PUT",
-        url: "/update",
+        url: "/user",
         data: {
           name: name1,
           date: birthdate,
           address: address,
           gender: gender,
-          phone: phone,
+          phone: parseInt(phone),
           password: pwd,
         },
       })
@@ -114,6 +122,14 @@ function Profile() {
     setPwd(pw);
   };
 
+  const bd = () => {
+    if (b) {
+      return birthdate;
+    } else if (data2 !== "") {
+      return data2;
+    }
+  };
+
   return (
     <div style={{ marginBottom: "80px" }}>
       <Row className="fazprof1">
@@ -130,11 +146,11 @@ function Profile() {
             width: "10rem",
             marginRight: "1rem",
           }}
-          for="up"
+          htmlFor="up"
           className="fazprof5"
           alt={edit}
         />
-        <Form.Control name="file" onChange={{}} type="file" id="up" />
+        <Form.Control name="file" type="file" id="up" />
       </Row>
       <Row className="fazr2">
         <h1 style={{ fontWeight: "bold" }}>Edit your personal bio</h1>
@@ -156,8 +172,8 @@ function Profile() {
               paddingLeft: "4rem",
             }}
             placeholder="What is Your Name"
-            defaultValue={name1}
             onChange={(e) => setName1(e.target.value)}
+            defaultValue={data1}
           />
           <img
             src={name}
@@ -183,7 +199,7 @@ function Profile() {
               minHeight: "3.5rem",
               maxHeight: "3.5rem",
             }}
-            placeholder={b ? birthdate : "When were you born"}
+            placeholder={bd()}
             onChange={(e) => handleDate(e)}
           />
         </Col>
@@ -200,8 +216,8 @@ function Profile() {
               paddingLeft: "4rem",
             }}
             placeholder="Where is your house address"
-            defaultValue={address}
             onChange={(e) => setAddress(e.target.value)}
+            defaultValue={data3}
           />
           <img
             src={loc}
@@ -295,6 +311,7 @@ function Profile() {
               aria-label="Text input with dropdown button"
               style={{ padding: "15px" }}
               onChange={(e) => setPhone(e.target.value)}
+              defaultValue={data5}
             />
           </InputGroup>
         </Col>
@@ -304,7 +321,7 @@ function Profile() {
             <Form.Control
               type="password"
               style={{ padding: "15px", paddingLeft: "4rem" }}
-              defaultValue="12345"
+              placeholder="********"
               onChange={(e) => setPw(e.target.value)}
             />
             <img
