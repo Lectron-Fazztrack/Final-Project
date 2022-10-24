@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import "./style.css";
-import { ReactComponent as eml } from "./img/email.svg";
-import { ReactComponent as pwd } from "./img/password.svg";
+// import { ReactComponent as eml } from "./img/email.svg";
+// import { ReactComponent as pwd } from "./img/password.svg";
 import register from "./img/register.png";
 import arrow from "./img/arrow.png";
 import { TextInput, Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 import useApi from "../../helpers/api";
 import { useNavigate } from "react-router-dom";
+import key from "./img/key.png";
+import person from "./img/person.png";
 
 function Register() {
   const navigate = useNavigate();
@@ -67,34 +69,67 @@ function Register() {
           <p style={{ color: "#777777" }}>
             Please fill in your name, email and password
           </p>
-          <div>
+          <div style={{ position: "relative" }}>
             <TextInput
               type="text"
               name="name"
               placeholder="What's your name?"
               required={true}
-              icon={eml}
               onChange={input}
+              style={{ paddingLeft: "3rem" }}
+            />
+            <img
+              src={person}
+              alt={person}
+              style={{
+                position: "absolute",
+                top: "36%",
+                left: "1rem",
+                width: "15px",
+                height: "15px",
+              }}
             />
           </div>
-          <div>
+          <div style={{ position: "relative" }}>
             <TextInput
               type="email"
               name="email"
               placeholder="Your e-mail address"
               required={true}
-              icon={eml}
               onChange={input}
+              style={{ paddingLeft: "3rem" }}
+            />
+            <img
+              src={person}
+              alt={person}
+              style={{
+                position: "absolute",
+                top: "36%",
+                left: "1rem",
+                width: "15px",
+                height: "15px",
+              }}
             />
           </div>
-          <div>
+          <div style={{ position: "relative" }}>
             <TextInput
               id="password1"
               type="password"
               placeholder="Your password"
               required={true}
-              icon={pwd}
               onChange={input}
+              style={{ paddingLeft: "3rem" }}
+            />
+            <img
+              src={key}
+              alt={key}
+              style={{
+                position: "absolute",
+                top: "36%",
+                left: "1rem",
+                width: "15px",
+                height: "15px",
+              }}
             />
           </div>
 

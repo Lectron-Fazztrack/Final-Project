@@ -31,7 +31,6 @@ function Home() {
   const getUser = async () => {
     try {
       const { data } = await api.req("/user");
-      console.log(data);
       dispatch(addUsers(data.data));
     } catch (error) {
       logOut();
