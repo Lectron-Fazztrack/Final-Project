@@ -23,6 +23,7 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const logs = async (e) => {
+    e.preventDefault();
     try {
       api
         .req({
@@ -50,6 +51,8 @@ function Login() {
   }, [isAuth]);
 
   const input = (e) => {
+    e.preventDefault();
+
     if (e.target.name === "email") {
       setEmail(e.target.value);
     } else {
