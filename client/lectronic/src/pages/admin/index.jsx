@@ -15,7 +15,7 @@ import withAuth from "../../helpers/withAuth";
 function Admin() {
   const navigate = useNavigate();
   const { data } = useSelector((state) => state.users);
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState([]);
   const api = useApi();
 
   const getProducts = () => {
@@ -39,6 +39,7 @@ function Admin() {
 
   return (
     <div className="App">
+      {console.log(product)}
       <Header />
       <InputGroup className={style.parent}>
         <FormControl
@@ -60,9 +61,17 @@ function Admin() {
       <div className="container">
         <div className="row"></div>
         <div className="row mb-5 mt-5">
-          <CardAdmin />
-          <CardAdmin />
-          <CardAdmin />
+          {product.map((v, k) => {
+            return (
+              <CardAdmin
+                id={v.id}
+                name={v.name}
+                price={v.price}
+                type={v.type}
+                image={v.image}
+              />
+            );
+          })}
         </div>
         <div className="row">
           <nav aria-label="Page navigation example">

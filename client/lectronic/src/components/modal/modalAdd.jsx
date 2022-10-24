@@ -51,8 +51,8 @@ function ModalAdd() {
         navigate("/products");
       })
       .catch((err) => {
-        console.log(err);
-        alert("aaa");
+        console.log(data);
+        alert(err);
       });
   };
 
