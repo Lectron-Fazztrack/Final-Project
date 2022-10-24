@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-function ModalAdd() {
+function ModalEdit() {
   const [data, setData] = useState({});
   const { token } = useSelector((state) => state.users);
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ function ModalAdd() {
       data: formData,
     })
       .then((res) => {
-        window.location.reload();
+        navigate("/products");
       })
       .catch((err) => {
         console.log(data);
@@ -164,4 +164,4 @@ function ModalAdd() {
   );
 }
 
-export default ModalAdd;
+export default ModalEdit;

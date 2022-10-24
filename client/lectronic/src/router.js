@@ -10,7 +10,6 @@ import DetailProduct from "./pages/product/detail";
 import Checkout from "./pages/checkout/checkout";
 import History from "./pages/history";
 import Admin from "./pages/admin";
-import AddProduct from "./components/modal/add";
 
 function Routers() {
   return (
@@ -26,7 +25,6 @@ function Routers() {
         <Route exact path="/cart/:id" element={<Cart />} />
         <Route exact path="/checkout/:id" element={<Checkout />} />
         <Route exact path="/history" element={<History />} />
-        <Route exact path="/add" element={<AddProduct />} />
       </Routes>
     </BrowserRouter>
   );
