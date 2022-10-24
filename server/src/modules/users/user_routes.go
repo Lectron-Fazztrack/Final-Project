@@ -11,9 +11,14 @@ func New(rt *gin.Engine, db *gorm.DB) {
 	svc := NewService(repo)
 	ctrl := NewCtrl(svc)
 
-	route := rt.Group("")
+	route := rt.Group("/user").Use(middleware.CheckAuth())
 	{
-		route.PUT("/update", middleware.CheckAuth(), middleware.Cloudinary(), ctrl.Update)
+		route.GET("", ctrl.GetAll)
+		route.POST("", ctrl.Add)
+		route.PUT("", ctrl.Update)
+		route.DELETE("", ctrl.Delete)
+		route.GET("/detail", ctrl.Search)
+		route.GET("/search", ctrl.SearchName)
 	}
 
 }

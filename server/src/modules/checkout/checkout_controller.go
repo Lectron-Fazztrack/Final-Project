@@ -35,19 +35,13 @@ func (re *co_ctrl) Checkout(c *gin.Context) {
 	}
 	email := claim_user.(string)
 
-	var data models.Cart
+	var data models.Checkout
 	err := json.NewDecoder(c.Request.Body).Decode(&data)
 	if err != nil {
 		libs.New(err.Error(), 400, true)
 		c.Abort()
 	}
-	res, err := re.svc.Checkout(&data, email)
-	if err != nil {
-		libs.New("error checkout", 400, true)
-		c.Abort()
-	}
-
-	res.Send(c)
+	re.svc.Checkout(&data, email).Send(c)
 }
 
 // func (re *co_ctrl) AddCart() (c *gin.Context) {

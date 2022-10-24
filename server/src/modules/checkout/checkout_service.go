@@ -27,20 +27,18 @@ func (re *co_service) GetAll(email string) *libs.Response {
 	return libs.New(data, 200, false)
 }
 
-func (re *co_service) Checkout(data *models.Cart, email string) (*libs.Response, error) {
-	result, err := re.co_repo.Save(data, email)
+func (re *co_service) Checkout(data *models.Checkout, email string) *libs.Response {
+	res, err := re.co_repo.GetId(email)
 	if err != nil {
-		return nil, err
+		return libs.New(err.Error(), 400, true)
 	}
-	res := libs.New(result, 201, false)
-	return res, nil
+	data.UserId = res.UserId
+	data.User.UserId = res.UserId
+	data.User.Email = email
+
+	result, err := re.co_repo.Save(data)
+	if err != nil {
+		return libs.New(err.Error(), 400, true)
+	}
+	return libs.New(result, 201, false)
 }
-
-// func (re *co_service) AddCart(data *models.Cart, id int) *libs.Response {
-// 	res, err := re.co_repo.AddCart(data, id)
-// 	if err != nil {
-// 		return libs.New(err.Error(), 400, true)
-// 	}
-// 	return libs.New(data, 200, false)
-
-// }

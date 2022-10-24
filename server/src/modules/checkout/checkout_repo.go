@@ -27,7 +27,7 @@ func (r *co_repo) FindAll() (*models.Checkouts, error) {
 
 func (r *co_repo) FindData(id string) (*models.Checkouts, error) {
 	var datas *models.Checkouts
-	result := r.db.Where("user_id = ?", id).Find(&datas)
+	result := r.db.Preload("Products").Where("user_id = ?", id).Find(&datas)
 	if result.Error != nil {
 		return nil, errors.New("failed obtain datas")
 	}
@@ -57,32 +57,13 @@ func (r *co_repo) GetProductId(id int) (*models.Product, error) {
 	return prod, nil
 }
 
-func (r *co_repo) Save(data *models.Cart, email string) (*models.Checkout, error) {
-	tx := r.db.Begin()
-	var checkout models.Checkout
-
-	defer func() {
-		if r := recover(); r != nil {
-			tx.Rollback()
-		}
-	}()
-
-	if tx.Where("user.email = ?", email).Find(&checkout); checkout.CheckoutId == 0 {
-		checkout.UserId = email
-		if err := tx.Create(&checkout).Error; err != nil {
-			tx.Rollback()
-			return nil, err
-		}
+func (r *co_repo) Save(data *models.Checkout) (*models.Checkout, error) {
+	result := r.db.Create(data)
+	if result.Error != nil {
+		return nil, errors.New("failled to obtain data")
 	}
 
-	data.CheckoutId = checkout.CheckoutId
-	if err := tx.Create(data).Error; err != nil {
-		tx.Rollback()
-		return nil, err
-	}
-
-	tx.Commit()
-	return &checkout, nil
+	return data, nil
 }
 
 func (r *co_repo) FindCoId(id int) (*models.Checkout, error) {
@@ -96,7 +77,3 @@ func (r *co_repo) FindCoId(id int) (*models.Checkout, error) {
 
 	return data, nil
 }
-
-// func (r *co_repo) AddCart(data *models.Cart, id int) (*models.Cart, error) {
-
-// }

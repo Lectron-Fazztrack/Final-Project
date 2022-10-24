@@ -1,13 +1,14 @@
 package users
 
 import (
-	"fmt"
+	"encoding/json"
+	"strconv"
+	"strings"
 
 	"github.com/Lectron-Fazztrack/Final-Project/server/src/database/models"
 	"github.com/Lectron-Fazztrack/Final-Project/server/src/interfaces"
 	"github.com/Lectron-Fazztrack/Final-Project/server/src/libs"
 	"github.com/gin-gonic/gin"
-	"github.com/gorilla/schema"
 )
 
 type user_ctrl struct {
@@ -18,33 +19,63 @@ func NewCtrl(reps interfaces.UserService) *user_ctrl {
 	return &user_ctrl{svc: reps}
 }
 
-func (re *user_ctrl) Update(c *gin.Context) {
-	c.Writer.Header().Set("Content-Type", "multipart/form-data")
-	var decoder = schema.NewDecoder()
-	var data models.User
-
+func (re *user_ctrl) GetAll(c *gin.Context) {
 	claim_user, exist := c.Get("email")
-	fmt.Println(claim_user)
 	if !exist {
 		libs.New("claim user is not exist", 400, true)
 		c.Abort()
 	}
-	email := claim_user.(string)
 
-	file, exist := c.Get("image")
-	if !exist {
-		libs.New("file not exist", 400, true)
-		c.Abort()
-	}
+	v := c.Request.URL.Query().Get("limit")
+	limit, _ := strconv.Atoi(v)
 
-	//file upload
-	image := file.(string)
-	data.Image = image
+	val := c.Request.URL.Query().Get("offset")
+	offset, _ := strconv.Atoi(val)
 
-	err := decoder.Decode(&data, c.Request.PostForm)
+	result := re.svc.FindEmail(claim_user.(string), limit, offset)
+	result.Send(c)
+}
+
+func (re *user_ctrl) Add(c *gin.Context) {
+	var data models.User
+	err := json.NewDecoder(c.Request.Body).Decode(&data)
 	if err != nil {
 		libs.New(err.Error(), 400, true)
 		c.Abort()
 	}
-	re.svc.Update(&data, email).Send(c)
+	re.svc.Add(&data).Send(c)
+}
+
+func (re *user_ctrl) Update(c *gin.Context) {
+	claim_user, exist := c.Get("email")
+	if !exist {
+		libs.New("claim user is not exist", 400, true)
+		c.Abort()
+	}
+
+	var data models.User
+	err := json.NewDecoder(c.Request.Body).Decode(&data)
+	if err != nil {
+		libs.New(err.Error(), 400, true)
+		c.Abort()
+	}
+
+	re.svc.Update(&data, claim_user.(string)).Send(c)
+}
+
+func (re *user_ctrl) Delete(c *gin.Context) {
+	val := c.Request.URL.Query().Get("email")
+	re.svc.Delete(val).Send(c)
+}
+
+func (re *user_ctrl) Search(c *gin.Context) {
+	val := c.Request.URL.Query().Get("email")
+	v := strings.ToLower(val)
+	re.svc.Search(v).Send(c)
+}
+
+func (re *user_ctrl) SearchName(c *gin.Context) {
+	val := c.Request.URL.Query().Get("name")
+	v := strings.ToLower(val)
+	re.svc.SearchName(v).Send(c)
 }
