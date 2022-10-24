@@ -88,13 +88,13 @@ func (re *user_service) FindEmail(email string, limit, offset int) *libs.Respons
 	if err != nil {
 		return libs.New(err.Error(), 400, true)
 	}
-	if data.Role == "admin" {
-		datas, err := re.user_repo.FindAll(limit, offset)
-		if err != nil {
-			return libs.New(err.Error(), 400, true)
-		}
-		return libs.New(datas, 200, false)
-	}
+	// if data.Role == "admin" {
+	// 	datas, err := re.user_repo.FindAll(limit, offset)
+	// 	if err != nil {
+	// 		return libs.New(err.Error(), 400, true)
+	// 	}
+	// 	return libs.New(datas, 200, false)
+	// }
 	return libs.New(data, 200, false)
 }
 
