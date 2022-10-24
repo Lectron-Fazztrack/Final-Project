@@ -34,6 +34,7 @@ function Home() {
 
   const getUser = async () => {
     try {
+      //** Waiting Backend Get User */
       // const { data } = await api.req("/user");
       // dispatch(addUsers(data.data));
     } catch (error) {
