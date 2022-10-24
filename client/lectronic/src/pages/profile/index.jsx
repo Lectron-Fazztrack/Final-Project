@@ -80,7 +80,7 @@ function Profile() {
     api
       .req({
         method: "PUT",
-        url: "/user",
+        url: "/update",
         data: {
           name: name1,
           date: birthdate,
@@ -121,7 +121,19 @@ function Profile() {
         </Link>
 
         <img src={prfl} className="fazprof4" alt={prfl} />
-        <img src={edit} className="fazprof5" alt={edit} />
+        <label
+          style={{
+            background: `url(${edit})`,
+            backgroundSize: "100% 100%",
+            height: "8rem",
+            width: "10rem",
+            marginRight: "1rem",
+          }}
+          for="up"
+          className="fazprof5"
+          alt={edit}
+        />
+        <Form.Control name="file" onChange={{}} type="file" id="up" />
       </Row>
       <Row className="fazr2">
         <h1 style={{ fontWeight: "bold" }}>Edit your personal bio</h1>
