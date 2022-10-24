@@ -33,9 +33,6 @@ function Admin() {
   };
 
   useEffect(() => {
-    if (data.role !== "admin") {
-      navigate("/");
-    }
     getProducts();
   }, []);
 
