@@ -97,6 +97,6 @@ func (r *co_repo) FindCoId(id int) (*models.Checkout, error) {
 	return data, nil
 }
 
-func (r *co_repo) AddCart(data *models.Cart, id int) (*models.Cart, error) {
+// func (r *co_repo) AddCart(data *models.Cart, id int) (*models.Cart, error) {
 
-}
+// }

@@ -36,11 +36,11 @@ func (re *co_service) Checkout(data *models.Cart, email string) (*libs.Response,
 	return res, nil
 }
 
-func (re *co_service) AddCart(data *models.Cart, id int) *libs.Response {
-	res, err := re.co_repo.AddCart(data, id)
-	if err != nil {
-		return libs.New(err.Error(), 400, true)
-	}
-	return libs.New(data, 200, false)
+// func (re *co_service) AddCart(data *models.Cart, id int) *libs.Response {
+// 	res, err := re.co_repo.AddCart(data, id)
+// 	if err != nil {
+// 		return libs.New(err.Error(), 400, true)
+// 	}
+// 	return libs.New(data, 200, false)
 
-}
+// }
