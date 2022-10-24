@@ -2,7 +2,6 @@ package products
 
 import (
 	"encoding/json"
-	"fmt"
 	"strconv"
 
 	"github.com/Lectron-Fazztrack/Final-Project/server/src/database/models"
@@ -59,7 +58,7 @@ func (re *prod_ctrl) AddProduct(c *gin.Context) {
 	//file upload
 	image := file.(string)
 	data.Image = image
-	fmt.Println(data.Name)
+
 	err := decoder.Decode(&data, c.Request.PostForm)
 	if err != nil {
 		libs.New(err.Error(), 400, true)
@@ -83,7 +82,7 @@ func (re *prod_ctrl) UpdateProduct(c *gin.Context) {
 	//file upload
 	image := file.(string)
 	data.Image = image
-	fmt.Println(data.Name)
+
 	err := decoder.Decode(&data, c.Request.PostForm)
 	if err != nil {
 		libs.New(err.Error(), 400, true)

@@ -19,7 +19,7 @@ func Cloudinary() gin.HandlerFunc {
 			c.Abort()
 		}
 
-		file, handlerFile, err := c.Request.FormFile("image")
+		file, handlerFile, err := c.Request.FormFile("imageUser")
 		if err != nil {
 			libs.New(err.Error(), 400, true)
 			c.Abort()
