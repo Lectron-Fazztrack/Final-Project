@@ -70,9 +70,6 @@ function History() {
               </div>
             );
           })}
-          <CardHistory />
-          <CardHistory />
-          <CardHistory />
         </div>
         <div className="row">
           <nav aria-label="Page navigation example">
