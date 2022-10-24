@@ -17,7 +17,6 @@ function Register() {
   const [password, setPassword] = useState("");
 
   const regist = async (e) => {
-    e.preventDefault();
     try {
       api
         .req({
@@ -39,8 +38,6 @@ function Register() {
   };
 
   const input = (e) => {
-    e.preventDefault();
-
     if (e.target.name === "name") {
       setName(e.target.value);
     } else if (e.target.name === "email") {

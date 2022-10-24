@@ -8,8 +8,10 @@ import CardAdmin from "../../components/card/cardAdmin";
 import ModalAdd from "../../components/modal/modalAdd";
 import useApi from "../../helpers/api";
 import "./style.css";
+import { useSelector } from "react-redux";
 
 function Admin() {
+  const { data } = useSelector((state) => state.users);
   const [product, setProduct] = useState({});
   const api = useApi();
 
