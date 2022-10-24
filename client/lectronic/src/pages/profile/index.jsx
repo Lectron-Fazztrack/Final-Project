@@ -67,6 +67,7 @@ function Profile() {
   };
 
   const getData = () => {
+    console.log(data2);
     console.log(phone);
     console.log(name1);
     api
@@ -125,8 +126,10 @@ function Profile() {
   const bd = () => {
     if (b) {
       return birthdate;
-    } else if (data2 !== "") {
+    } else if (data2 !== undefined) {
       return data2;
+    } else {
+      return "When were you born";
     }
   };
 
