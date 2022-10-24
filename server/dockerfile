@@ -1,8 +1,8 @@
 FROM golang:alpine
 
-WORKDIR /finalProject
+WORKDIR /finalProject/backend/
 
-COPY . /finalProject/
+COPY . .
 
 ENV DBHOST=${DBHOST}
 ENV DBUSER=${DBUSER}
@@ -10,10 +10,16 @@ ENV DBPASS=${DBPASS}
 ENV DBNAME=${DBNAME}
 ENV JWT_KEYS=${JWT_KEYS}
 ENV DBSSL=${DBSSL}
+ENV CLOUD_NAME=${CLOUD_NAME}
+ENV CLOUD_KEY=${CLOUD_KEY}
+
+
 
 ENV PORT = ${PORT}
 
-RUN go mod tidy
+RUN go mod vendor
 RUN go build -o start
+RUN /finalProject/backend/start migrate -u
+RUN /finalProject/backend/start seed
 
-CMD [ "/finalProject/start serve" ]
+CMD [ "/finalProject/backend/start serve" ]
