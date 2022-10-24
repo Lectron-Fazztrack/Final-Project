@@ -70,3 +70,53 @@ func (r *prod_repo) Delete(id string) (*models.Products, error) {
 	}
 	return datas, nil
 }
+
+func (r *prod_repo) GetProdId(id int) (*models.Product, error) {
+	var data *models.Product
+
+	res := r.db.Where("product_id = ?", id).Find(&data)
+	if res.Error != nil {
+		return nil, errors.New("product id not found!")
+	}
+	return data, nil
+}
+
+func (r *prod_repo) GetUser(email string) (*models.User, error) {
+	var data *models.User
+
+	res := r.db.Where("email = ?", email).Find(&data)
+	if res.Error != nil {
+		return nil, errors.New("user email not found!")
+	}
+	return data, nil
+}
+
+func (r *prod_repo) GetCoId(id int) (*models.Checkout, error) {
+	var data *models.Checkout
+
+	res := r.db.Where("checkout_id = ?", id).Find(&data)
+	if res.Error != nil {
+		return nil, errors.New("checkout id not found!")
+	}
+	return data, nil
+}
+
+func (r *prod_repo) AddReview(data *models.Review) (*models.Review, error) {
+	result := r.db.Create(data)
+	if result.Error != nil {
+		return nil, errors.New("failled to obtain data")
+	}
+
+	return data, nil
+}
+
+func (r *prod_repo) GetReview(id int) (*models.Reviews, error) {
+	var datas *models.Reviews
+
+	res := r.db.Preload("Product").Preload("Checkout").Order("review_id asc").Where("product_id = ?", id).Find(&datas)
+	if res.Error != nil {
+		return nil, errors.New("failled to obtain data")
+	}
+
+	return datas, nil
+}

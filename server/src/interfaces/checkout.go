@@ -17,5 +17,4 @@ type CoRepo interface {
 type CoService interface {
 	GetAll(email string) *libs.Response
 	Checkout(data *models.Checkout, email string) *libs.Response
-	// Checkout(data *models.Vehicleitem, email string) *libs.Response
 }

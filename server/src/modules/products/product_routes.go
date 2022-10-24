@@ -19,6 +19,8 @@ func New(rt *gin.Engine, db *gorm.DB) {
 		route.GET("/:id", ctrl.GetById)
 		route.GET("", ctrl.GetAllProduct)
 		route.GET("/types/:type", ctrl.GetByType)
+		route.POST("/review", middleware.CheckAuth(), ctrl.PostReview)
+		route.GET("/review/:id", ctrl.GetReview)
 	}
 
 }
