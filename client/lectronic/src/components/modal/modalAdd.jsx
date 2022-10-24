@@ -4,14 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useApi from "../../helpers/api";
 
 function ModalAdd() {
-  const [data, setData] = useState({
-    name: "",
-    price: 0,
-    stock: 0,
-    description: "",
-    type: "",
-    image: null,
-  });
+  const [data, setData] = useState({});
 
   const navigate = useNavigate();
   const api = useApi();

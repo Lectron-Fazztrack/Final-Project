@@ -1,54 +1,55 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import useApi from '../../helpers/api'
-import withAuth from '../../helpers/withAuth'
-import { Button, Card, Form, Container } from 'react-bootstrap'
-import style from './checkout.module.css'
-import Header from '../../components/header/header'
-import CardCart from '../../components/cart/comCart'
-import Footer from '../../components/footer/footer'
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import useApi from "../../helpers/api";
+import withAuth from "../../helpers/withAuth";
+import { Button, Card, Form, Container } from "react-bootstrap";
+import style from "./checkout.module.css";
+import Header from "../../components/header/header";
+import CardCart from "../../components/cart/comCart";
+import Footer from "../../components/footer/footer";
 
 function Checkout() {
-  const [order, setOrder] = useState({})
-  const [data, setData] = useState({})
-  const params = useParams()
+  const [order, setOrder] = useState({});
+  const [data, setData] = useState({});
+  const params = useParams();
 
-  const api = useApi()
+  const api = useApi();
 
   const newOrder = async () => {
     api
       .req({
-        method: 'POST',
-        url: '/checkout',
-        data: order
+        method: "POST",
+        url: "/checkout",
+        data: order,
       })
       .then((res) => {
-        console.log(res)
+        console.log(res);
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }
+        console.log(err);
+      });
+  };
 
   const getProduct = async () => {
     api
       .req({
-        method: 'GET',
-        url: `/products/${params.id}`
+        method: "GET",
+        url: `/products/${params.id}`,
       })
       .then((res) => {
-        const { data } = res.data
-        setOrder(data)
-        setData(data)
+        const { data } = res.data;
+        setOrder(data);
+        setData(data);
+        order.product_id = params.id;
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
-    getProduct()
-  }, [])
+    getProduct();
+  }, []);
 
   return (
     <>
@@ -73,7 +74,7 @@ function Checkout() {
                 <Button
                   className={style.but_change}
                   variant="outline-primary"
-                  style={{ width: '40%', height: '40%' }}
+                  style={{ width: "40%", height: "40%" }}
                 >
                   Change Address
                 </Button>
@@ -92,7 +93,7 @@ function Checkout() {
                 <Card.Title className={style.total}>Total</Card.Title>
                 <div className={style.price}>
                   <Card.Text className={style.title_price}>
-                    {' '}
+                    {" "}
                     Item Price
                   </Card.Text>
                   <Card.Text className={style.cost_price}>
@@ -117,13 +118,13 @@ function Checkout() {
                 <Button
                   onClick={newOrder}
                   className={style.but_checkout}
-                  style={{ width: '97%' }}
+                  style={{ width: "97%" }}
                 >
                   Pay Bills
                 </Button>
                 <Form.Select
                   className={style.but_payment}
-                  style={{ width: '97%' }}
+                  style={{ width: "97%" }}
                 >
                   <option value="" selected disabled hidden>
                     Choose Payment Method
@@ -141,7 +142,7 @@ function Checkout() {
       </Container>
       <Footer />
     </>
-  )
+  );
 }
 
-export default withAuth(Checkout)
+export default withAuth(Checkout);
