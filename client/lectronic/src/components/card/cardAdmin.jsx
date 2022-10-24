@@ -1,7 +1,7 @@
 import React from "react";
-import img from "../../img/product-example.png";
 import { BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import useApi from "../../helpers/api";
 import "./style.css";
 
 function CardAdmin(props) {
@@ -9,6 +9,23 @@ function CardAdmin(props) {
   const detail = () => {
     navigate("/products/detail/" + props.id);
   };
+
+  const api = useApi();
+
+  const deleteProduct = (id) => {
+    api
+      .req({
+        method: "DELETE",
+        url: `/products/` + props.id,
+      })
+      .then((res) => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="card-admin">
       <div className="row">
@@ -33,7 +50,11 @@ function CardAdmin(props) {
             >
               Detail
             </button>
-            <button type="button" class="card-admin-button-trash">
+            <button
+              onClick={deleteProduct}
+              type="button"
+              class="card-admin-button-trash"
+            >
               <BsTrash className="bs-cart" />
             </button>
           </div>
