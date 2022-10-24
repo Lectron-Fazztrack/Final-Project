@@ -163,9 +163,7 @@ function Profile() {
               minHeight: "3.5rem",
               maxHeight: "3.5rem",
             }}
-            placeholder={
-              b || birthdateUser !== "" ? birthdateUser : "When were you born"
-            }
+            placeholder={b ? birthdate : "When were you born"}
             onChange={(e) => handleDate(e)}
           />
         </Col>

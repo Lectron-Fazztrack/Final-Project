@@ -9,8 +9,10 @@ import ModalAdd from "../../components/modal/modalAdd";
 import useApi from "../../helpers/api";
 import "./style.css";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Admin() {
+  const navigate = useNavigate();
   const { data } = useSelector((state) => state.users);
   const [product, setProduct] = useState({});
   const api = useApi();
@@ -31,6 +33,9 @@ function Admin() {
   };
 
   useEffect(() => {
+    if (data.role !== "admin") {
+      navigate("/");
+    }
     getProducts();
   }, []);
 
