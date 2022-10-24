@@ -6,7 +6,7 @@ function CardReview() {
   return (
     <div className="card-review">
       <div className="row">
-        <div className="col-lg-6">
+        <div className="col-8">
           <div className="left-detail">
             <div className="row">
               <div className="card-history-title">
@@ -17,7 +17,7 @@ function CardReview() {
             </div>
           </div>
         </div>
-        <div className="col-lg-6 my-auto">
+        <div className="col-4 my-auto">
           <div className="row">
             <span className="right-detail">
               <span className="badge card-history-type">Daniel</span>
