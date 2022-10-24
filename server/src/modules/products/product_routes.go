@@ -11,7 +11,7 @@ func New(rt *gin.Engine, db *gorm.DB) {
 	svc := NewService(repo)
 	ctrl := NewCtrl(svc)
 
-	route := rt.Group("/products")
+	route := rt.Group("/products").Use(middleware.CheckAuth())
 	{
 
 		route.POST("", middleware.CheckAuthor(), middleware.Cloudinary(), ctrl.AddProduct)

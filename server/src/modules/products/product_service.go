@@ -38,12 +38,15 @@ func (re *prod_servcie) GetType(types string) *libs.Response {
 }
 func (re *prod_servcie) Add(data *models.Product) *libs.Response {
 	result, err := re.prod_repo.Save(data)
+
 	if err != nil {
 		return libs.New(err.Error(), 400, true)
 	}
 	return libs.New(result, 201, false)
+
 }
 func (re *prod_servcie) Update(data *models.Product, id string) *libs.Response {
+
 	result, err := re.prod_repo.Update(data, id)
 	if err != nil {
 		return libs.New(err.Error(), 400, true)

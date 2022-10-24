@@ -36,6 +36,7 @@ func Cloudinary() gin.HandlerFunc {
 			c.Abort()
 		}
 
+		//Format name
 		name := time.Now().Format("2006-01-02_15:04:05") + "_" + handlerFile.Filename
 
 		cld, err1 := cloudinary.NewFromParams(os.Getenv("CLOUD_NAME"), os.Getenv("CLOUD_KEY"), os.Getenv("CLOUD_SEC"))
