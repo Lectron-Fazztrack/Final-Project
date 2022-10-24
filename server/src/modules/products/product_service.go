@@ -88,7 +88,7 @@ func (re *prod_servcie) PostReview(data *models.Review, email string) *libs.Resp
 	data.CheckoutId = co.CheckoutId
 	data.Checkout.CheckoutId = co.CheckoutId
 	data.Checkout.UserId = co.UserId
-	data.Checkout.Amount = co.Amount
+	// data.Checkout.Amount = co.Amount
 	data.Checkout.Total = co.Total
 
 	result, err := re.prod_repo.AddReview(data)
