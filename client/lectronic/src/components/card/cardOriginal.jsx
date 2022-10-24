@@ -8,6 +8,9 @@ function CardOriginal(props) {
   const detail = () => {
     navigate("/products/detail/" + props.id);
   };
+  const addToCart = () => {
+    navigate("/cart/" + props.id);
+  };
   return (
     <div className="card-original">
       <div className="card-title">{props.name}</div>
@@ -20,7 +23,7 @@ function CardOriginal(props) {
         <button type="button" onClick={detail} class="card-button-detail">
           Detail
         </button>
-        <button type="button" class="card-button-cart">
+        <button type="button" onClick={addToCart} class="card-button-cart">
           <BsCart className="bs-cart" />
         </button>
       </div>
