@@ -48,11 +48,11 @@ function ModalAdd() {
         data: formData,
       })
       .then((res) => {
-        console.log(res);
         navigate("/products");
       })
       .catch((err) => {
-        alert(err);
+        console.log(err);
+        alert("aaa");
       });
   };
 

@@ -21,7 +21,6 @@ function History() {
       .then((res) => {
         const { data } = res.data;
         setHistory(data);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
