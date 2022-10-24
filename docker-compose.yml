@@ -3,5 +3,5 @@ services:
   backend:
     build: ../server
   frontend:
-    depends_on: database
+    depends_on: backend
     build: ../client
