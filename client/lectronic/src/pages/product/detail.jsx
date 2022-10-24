@@ -4,6 +4,7 @@ import Footer from "../../components/footer/footer";
 import "./style.css";
 import useApi from "../../helpers/api";
 import { useParams } from "react-router-dom";
+import CardReview from "../../components/card/cardReview";
 
 function DetailProduct() {
   const [product, setProduct] = useState({});
@@ -33,8 +34,44 @@ function DetailProduct() {
     <div className="App">
       <Header />
       <div className="container">
-        <div className="row">
-          <div className="col-lg-5"></div>
+        <div className="row mt-5">
+          <div className="col-lg-5">
+            <div className="detail-image">
+              <div className="row">
+                <img src={product.image} alt="" className="detail-big-image" />
+              </div>
+              <div className="row">
+                <div className="col-3">
+                  <img
+                    src={product.image}
+                    alt=""
+                    className="detail-little-image"
+                  />
+                </div>
+                <div className="col-3">
+                  <img
+                    src={product.image}
+                    alt=""
+                    className="detail-little-image"
+                  />
+                </div>
+                <div className="col-3">
+                  <img
+                    src={product.image}
+                    alt=""
+                    className="detail-little-image"
+                  />
+                </div>
+                <div className="col-3">
+                  <img
+                    src={product.image}
+                    alt=""
+                    className="detail-little-image"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="col-lg-7">
             <div className="detail-title">{product.name}</div>
             <div className="detail-subtitle">Sold 6 | 4.9</div>
@@ -69,7 +106,7 @@ function DetailProduct() {
               </nav>
               <div class="tab-content" id="nav-tabContent">
                 <div
-                  class="tab-pane fade show active"
+                  class="tab-pane fade show active detail-tab"
                   id="nav-home"
                   role="tabpanel"
                   aria-labelledby="nav-home-tab"
@@ -78,13 +115,14 @@ function DetailProduct() {
                   {product.description}
                 </div>
                 <div
-                  class="tab-pane fade"
+                  class="tab-pane fade detail-tab"
                   id="nav-profile"
                   role="tabpanel"
                   aria-labelledby="nav-profile-tab"
                   tabindex="0"
                 >
-                  ...
+                  <CardReview />
+                  <CardReview />
                 </div>
               </div>
             </div>
