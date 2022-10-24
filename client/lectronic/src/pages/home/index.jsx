@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import CardOriginal from "../../components/card/cardOriginal";
 import subscribe from "../../img/subscribe.png";
@@ -7,12 +8,34 @@ import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import "./style.css";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout, addUsers } from "../../store/reducer/user";
+import useApi from "../../helpers/api";
 
 function Home() {
   const [headphone, setHeadphone] = useState([]);
   const [airConditioner, setAirConditioner] = useState([]);
   const [television, setTelevision] = useState([]);
   const [router, setRouter] = useState([]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isAuth } = useSelector((state) => state.users);
+  const api = useApi();
+
+  const logOut = () => {
+    dispatch(logout());
+    navigate("/");
+  };
+
+  const getUser = async () => {
+    try {
+      const { data } = await api.req("/users");
+      dispatch(addUsers(data.data));
+    } catch (error) {
+      logOut();
+    }
+  };
 
   const getProducts = async () => {
     try {
@@ -38,6 +61,10 @@ function Home() {
   };
 
   useEffect(() => {
+    if (isAuth) {
+      getUser();
+    }
+
     getProducts();
   }, []);
 

@@ -53,7 +53,7 @@ function Register() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 relative">
       <div className="fazwh z-10">
-        <form className="flex flex-col gap-4 ml-12 mt-28 w-5/6 md:w-2/3 lg:ml-28">
+        <form className="flex flex-col gap-4 ml-12 mt-28 w-5/6 md:w-2/3 lg:ml-28 xl:mt-32">
           <div className="faz1">
             <Link to="/">
               <div className="mr-10 fazgray fazhov2">
