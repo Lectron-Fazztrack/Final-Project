@@ -23,6 +23,7 @@ function Checkout() {
         data: order,
       })
       .then((res) => {
+        console.log(order);
         console.log(res);
       })
       .catch((err) => {
@@ -40,7 +41,8 @@ function Checkout() {
         const { data } = res.data;
         setOrder(data);
         setData(data);
-        order.product_id = params.id;
+        order.product_id = parseInt(params.id);
+        data.product_id = parseInt(params.id);
       })
       .catch((err) => {
         console.log(err);
