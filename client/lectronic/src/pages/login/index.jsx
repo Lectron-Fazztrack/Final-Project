@@ -162,7 +162,7 @@ function Login() {
             left: "12vw",
             maxWidth: "42vmax",
             width: "40vmax",
-            height: "13rem",
+            height: "12rem",
           }}
           src={welcome}
           alt={welcome}
