@@ -17,7 +17,7 @@ function Cart() {
 
   const getProduct = async () => {
     api
-      .requests({
+      .req({
         method: 'GET',
         url: `/products/${params.id}`
       })

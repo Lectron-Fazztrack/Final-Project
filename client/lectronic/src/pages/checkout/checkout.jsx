@@ -17,7 +17,7 @@ function Checkout() {
 
   const newOrder = async () => {
     api
-      .requests({
+      .req({
         method: 'POST',
         url: '/checkout',
         data: order
@@ -32,7 +32,7 @@ function Checkout() {
 
   const getProduct = async () => {
     api
-      .requests({
+      .req({
         method: 'GET',
         url: `/products/${params.id}`
       })
