@@ -30,11 +30,13 @@ function Profile() {
   const [phone, setPhone] = useState("");
   const [pwd, setPwd] = useState("");
   const [countryID, setCountryID] = useState("");
+  const [pw, setPw] = useState("");
 
   const handleDate = (e) => {
     setB(true);
     setBirthdate(e.target.value);
     setBirthdateUser(birthdate);
+    console.log(birthdateUser);
   };
 
   const handleBg1 = () => {
@@ -285,7 +287,7 @@ function Profile() {
               type="password"
               style={{ padding: "15px", paddingLeft: "4rem" }}
               defaultValue="12345"
-              onChange={(e) => setPwd(e.target.value)}
+              onChange={(e) => setPw(e.target.value)}
             />
             <img
               src={key}
@@ -302,6 +304,7 @@ function Profile() {
               variant="outline-secondary"
               id="button-addon2"
               style={{ color: "#415FE7" }}
+              onClick={setPwd(pw)}
             >
               Change
             </Button>
