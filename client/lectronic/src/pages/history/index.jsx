@@ -33,6 +33,7 @@ function History() {
 
   return (
     <div className="App">
+      {console.log(history)}
       <Header />
       <InputGroup className={style.parent}>
         <FormControl
@@ -57,16 +58,14 @@ function History() {
         <div className="row mb-5 mt-5">
           {history.map((v, k) => {
             return (
-              <div className="col-xl-4 col-lg-6 col-sm-12">
-                {v.product_id}
-                <CardHistory
-                  id={v.id}
-                  name={v.name}
-                  price={v.price}
-                  rate={v.rating}
-                  image={v.image}
-                />
-              </div>
+              <CardHistory
+                id={v.id}
+                name={v.name}
+                price={v.price}
+                type={v.type}
+                image={v.image}
+                total={v.total}
+              />
             );
           })}
         </div>
