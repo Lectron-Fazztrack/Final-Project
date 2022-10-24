@@ -1,0 +1,7 @@
+/lectronic/node_modules
+/lectronic/npm-debug.log
+/lectronic/build
+.dockerignore
+**/.git
+**/.DS_Store
+**/node_modules
