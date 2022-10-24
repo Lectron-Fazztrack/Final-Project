@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/cloudinary/cloudinary-go/v2"
 	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
@@ -33,4 +34,34 @@ func CloudUpload(src string) (string, error) {
 	}
 
 	return resp.SecureURL, nil
+}
+
+func CloudDelete(src string) (string, error) {
+
+	cloud := os.Getenv("CLOUD_NAME")
+	keys := os.Getenv("CLOUD_KEY")
+	secret := os.Getenv("CLOUD_SEC")
+
+	ctx := context.Background()
+
+	cld, err := cloudinary.NewFromParams(cloud, keys, secret)
+	if err != nil {
+		return "", err
+	}
+
+	//slice url
+	s := strings.SplitAfter(src, "/")
+	var name []string
+	for _, element := range s {
+		name = append(name, element)
+	}
+
+	//note
+	publicID := strings.Join(strings.Split(name[8], ".jpg"), " ")
+
+	resp, err := cld.Upload.Destroy(ctx, uploader.DestroyParams{
+		PublicID:     "image/" + publicID,
+		ResourceType: "image"})
+
+	return resp.Error.Message, nil
 }

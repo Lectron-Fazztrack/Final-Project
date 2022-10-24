@@ -8,7 +8,7 @@ import (
 type ProductRepo interface {
 	Save(data *models.Product) (*models.Product, error)
 	Update(data *models.Product, id string) (*models.Product, error)
-	Delete(id string) (*models.Products, error)
+	Delete(id string) (*models.Product, error)
 
 	FindAll(limit, offset int) (*models.Products, error)
 	FindById(id string) (*models.Product, error)
