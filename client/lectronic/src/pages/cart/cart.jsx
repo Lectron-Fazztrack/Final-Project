@@ -1,36 +1,37 @@
 import { InputGroup, FormControl, Button, Card } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import style from './cart.module.css'
 import Header from '../../components/header/header'
 import CardCart from '../../components/cart/comCart'
 import FormCheckInput from 'react-bootstrap/esm/FormCheckInput'
 import { BsPerson, BsBagCheck, BsSearch } from 'react-icons/bs'
+import { useEffect, useState } from 'react'
+import useApi from '../../helpers/api'
 
 function Cart() {
   const navigate = useNavigate()
-  const data = [
-    {
-      name: 'Sennheiser HD 25',
-      price: 3000,
-      rating: 4.9,
-      image: '',
-      type: 'Headphone'
-    },
-    {
-      name: 'Sennheiser HD 25',
-      price: 3000,
-      rating: 4.9,
-      image: '',
-      type: 'Headphone'
-    },
-    {
-      name: 'Sennheiser HD 25',
-      price: 3000,
-      rating: 4.9,
-      image: '',
-      type: 'Headphone'
-    }
-  ]
+  const [data, setData] = useState({})
+  const params = useParams()
+  const api = useApi()
+
+  const getProduct = async () => {
+    api
+      .requests({
+        method: 'GET',
+        url: `/products/${params.id}`
+      })
+      .then((res) => {
+        const { data } = res.data
+        setData(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  useEffect(() => {
+    getProduct()
+  }, [])
 
   return (
     <>
@@ -65,16 +66,12 @@ function Cart() {
           </div>
           <div className={style.cardCart}>
             <div>
-              {data.map((v, k) => {
-                return (
-                  <CardCart
-                    name={v.name}
-                    type={v.type}
-                    price={v.price}
-                    img={v.image}
-                  />
-                )
-              })}
+              <CardCart
+                name={data.name}
+                type={data.type}
+                price={data.price}
+                img={data.image}
+              />
             </div>
             <div>
               <Card className={style.card_total}>
@@ -103,7 +100,7 @@ function Cart() {
                     </Card.Text>
                   </div>
                   <Button
-                    onClick={() => navigate(`/checkout`)}
+                    onClick={() => navigate(`/checkout/${params.id}`)}
                     className={style.but_checkout}
                     style={{ width: '97%' }}
                   >
