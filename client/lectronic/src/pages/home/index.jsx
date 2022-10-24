@@ -30,8 +30,8 @@ function Home() {
 
   const getUser = async () => {
     try {
-      const { data } = await api.req("/user");
-      dispatch(addUsers(data.data));
+      // const { data } = await api.req("/user");
+      // dispatch(addUsers(data.data));
     } catch (error) {
       logOut();
     }

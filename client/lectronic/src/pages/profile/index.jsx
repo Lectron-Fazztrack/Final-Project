@@ -92,7 +92,8 @@ function Profile() {
       })
       .then((res) => {
         console.log("up", res.data);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
