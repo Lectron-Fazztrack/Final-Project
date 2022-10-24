@@ -33,8 +33,6 @@ func (re *co_service) Checkout(data *models.Checkout, email string) *libs.Respon
 		return libs.New(err.Error(), 400, true)
 	}
 	data.UserId = res.UserId
-	data.User.UserId = res.UserId
-	data.User.Email = email
 
 	result, err := re.co_repo.Save(data)
 	if err != nil {
