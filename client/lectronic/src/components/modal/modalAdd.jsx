@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
 import { useSelector } from "react-redux";
 
 function ModalAdd() {
   const [data, setData] = useState({});
   const { token } = useSelector((state) => state.users);
   const navigate = useNavigate();
- 
 
   const onChangeInput = (event) => {
     event.preventDefault();
@@ -34,17 +33,16 @@ function ModalAdd() {
     for (const key in data) {
       formData.append(`${key}`, data[key]);
     }
-  
+
     axios({
-      method: 'POST',
-      url: "http://localhost:8080/products" ,
-      headers: {     
-           Authorization: `Bearer ${token}`,
-           "Content-Type": "multipart/form-data",
-           "Access-Control-Allow-Origin" : "http://localhost:3000" ,
-          },
-      data: formData
-  })
+      method: "POST",
+      url: "http://localhost:8080/products",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+      data: formData,
+    })
       .then((res) => {
         navigate("/products");
       })
