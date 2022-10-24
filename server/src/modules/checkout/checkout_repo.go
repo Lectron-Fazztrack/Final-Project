@@ -19,7 +19,7 @@ func (r *co_repo) FindAll() (*models.Checkouts, error) {
 	var datas *models.Checkouts
 	result := r.db.Model(&datas).Preload("User").Find(&datas)
 	if result.Error != nil {
-		return nil, errors.New("failed obtain datas")
+		return nil, errors.New("failed obtain data history checkout")
 	}
 
 	return datas, nil
@@ -29,7 +29,7 @@ func (r *co_repo) FindData(id string) (*models.Checkouts, error) {
 	var datas *models.Checkouts
 	result := r.db.Preload("Products").Where("user_id = ?", id).Find(&datas)
 	if result.Error != nil {
-		return nil, errors.New("failed obtain datas")
+		return nil, errors.New("failed obtain data user id")
 	}
 
 	return datas, nil
@@ -51,7 +51,7 @@ func (r *co_repo) GetProductId(id int) (*models.Product, error) {
 
 	res := r.db.Model(&prods).Where("product_id = ?", id).Find(&prod)
 	if res.Error != nil {
-		return nil, errors.New("invalid id")
+		return nil, errors.New("invalid id product")
 	}
 
 	return prod, nil
@@ -60,7 +60,7 @@ func (r *co_repo) GetProductId(id int) (*models.Product, error) {
 func (r *co_repo) Save(data *models.Checkout) (*models.Checkout, error) {
 	result := r.db.Create(data)
 	if result.Error != nil {
-		return nil, errors.New("failled to obtain data")
+		return nil, errors.New("failled to save data")
 	}
 
 	return data, nil
@@ -72,7 +72,7 @@ func (r *co_repo) FindCoId(id int) (*models.Checkout, error) {
 
 	result := r.db.Model(&datas).Where("checkout_id = ?", id).Find(&data)
 	if result.Error != nil {
-		return nil, errors.New("failed obtain datas")
+		return nil, errors.New("failed to obtain product")
 	}
 
 	return data, nil
