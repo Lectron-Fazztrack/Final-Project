@@ -8,6 +8,7 @@ import User from "./pages/user";
 import Profile from "./pages/profile";
 import Cart from "./pages/cart/cart";
 import DetailProduct from "./pages/product/detail";
+import History from "./pages/history";
 
 function Routers() {
   return (
@@ -21,6 +22,7 @@ function Routers() {
         <Route exact path="/user" element={<User />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/cart" element={<Cart />} />
+        <Route exact path="/history" element={<History />} />
       </Routes>
     </BrowserRouter>
   );

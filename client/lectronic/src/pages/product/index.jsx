@@ -136,6 +136,7 @@ function Product() {
                 return (
                   <div className="col-xl-4 col-lg-6 col-sm-12">
                     <CardOriginal
+                      id={v.id}
                       name={v.name}
                       price={v.price}
                       rate={v.rating}
@@ -158,6 +159,7 @@ function Product() {
                 return (
                   <div className="col-xl-4 col-lg-6 col-sm-12">
                     <CardOriginal
+                      id={v.id}
                       name={v.name}
                       price={v.price}
                       rate={v.rating}
@@ -180,6 +182,7 @@ function Product() {
                 return (
                   <div className="col-xl-4 col-lg-6 col-sm-12">
                     <CardOriginal
+                      id={v.id}
                       name={v.name}
                       price={v.price}
                       rate={v.rating}
@@ -202,6 +205,7 @@ function Product() {
                 return (
                   <div className="col-xl-4 col-lg-6 col-sm-12">
                     <CardOriginal
+                      id={v.id}
                       name={v.name}
                       price={v.price}
                       rate={v.rating}
