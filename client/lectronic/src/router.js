@@ -8,6 +8,7 @@ import Profile from "./pages/profile";
 import Cart from "./pages/cart/cart";
 import DetailProduct from "./pages/product/detail";
 import History from "./pages/history";
+import Admin from "./pages/admin";
 
 function Routers() {
   return (
@@ -15,6 +16,7 @@ function Routers() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/products" element={<Product />} />
+        <Route exact path="/admin" element={<Admin />} />
         <Route exact path="/products/detail/:id" element={<DetailProduct />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
