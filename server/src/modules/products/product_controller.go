@@ -1,6 +1,7 @@
 package products
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
 
@@ -20,11 +21,15 @@ func NewCtrl(reps interfaces.ProductService) *prod_ctrl {
 }
 
 func (re *prod_ctrl) GetAllProduct(c *gin.Context) {
-	v := c.Request.URL.Query().Get("limit")
-	limit, _ := strconv.Atoi(v)
+	v := c.Request.URL.Query().Get("pages")
+	pages, _ := strconv.Atoi(v)
+	limit := 12
 
-	val := c.Request.URL.Query().Get("offset")
-	offset, _ := strconv.Atoi(val)
+	var offset int
+	if pages == 1 {
+		offset = 0
+	}
+	offset = limit * (pages - 1)
 
 	re.svc.GetAll(limit, offset).Send(c)
 
@@ -92,4 +97,28 @@ func (re *prod_ctrl) DeleteProduct(c *gin.Context) {
 	id := c.Param("id")
 	re.svc.Delete(id).Send(c)
 
+}
+
+func (re *prod_ctrl) PostReview(c *gin.Context) {
+	claim_user, exist := c.Get("email")
+	if !exist {
+		libs.New("claim user is not exist", 400, true)
+		c.Abort()
+	}
+	email := claim_user.(string)
+
+	var data models.Review
+	err := json.NewDecoder(c.Request.Body).Decode(&data)
+	if err != nil {
+		libs.New(err.Error(), 400, true)
+		c.Abort()
+	}
+	re.svc.PostReview(&data, email).Send(c)
+}
+
+func (re *prod_ctrl) GetReview(c *gin.Context) {
+	prodId := c.Param("id")
+	id, _ := strconv.Atoi(prodId)
+
+	re.svc.GetAllReview(id).Send(c)
 }

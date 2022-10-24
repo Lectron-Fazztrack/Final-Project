@@ -13,6 +13,11 @@ type ProductRepo interface {
 	FindAll(limit, offset int) (*models.Products, error)
 	FindById(id string) (*models.Product, error)
 	FindByType(types string) (*models.Products, error)
+	GetProdId(id int) (*models.Product, error)
+	GetUser(email string) (*models.User, error)
+	GetCoId(id int) (*models.Checkout, error)
+	AddReview(data *models.Review) (*models.Review, error)
+	GetReview(id int) (*models.Reviews, error)
 }
 
 type ProductService interface {
@@ -23,4 +28,6 @@ type ProductService interface {
 	GetAll(limit, offset int) *libs.Response
 	GetId(id string) *libs.Response
 	GetType(types string) *libs.Response
+	PostReview(data *models.Review, email string) *libs.Response
+	GetAllReview(id int) *libs.Response
 }

@@ -27,7 +27,7 @@ func (r *co_repo) FindAll() (*models.Checkouts, error) {
 
 func (r *co_repo) FindData(id string) (*models.Checkouts, error) {
 	var datas *models.Checkouts
-	result := r.db.Model(&datas).Preload("User").Where("user_id = ?", id).Find(&datas)
+	result := r.db.Where("user_id = ?", id).Find(&datas)
 	if result.Error != nil {
 		return nil, errors.New("failed obtain datas")
 	}
@@ -36,14 +36,13 @@ func (r *co_repo) FindData(id string) (*models.Checkouts, error) {
 }
 
 func (r *co_repo) GetId(email string) (*models.User, error) {
-	var users *models.Users
-	var user *models.User
+	var data *models.User
 
-	result := r.db.Model(&users).Where("email = ?", email).Find(&user)
+	result := r.db.Where("email = ?", email).Find(&data).Limit(1)
 	if result.Error != nil {
 		return nil, errors.New("invalid user_id")
 	}
-	return user, nil
+	return data, nil
 }
 
 func (r *co_repo) GetProductId(id int) (*models.Product, error) {

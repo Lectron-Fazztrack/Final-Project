@@ -19,19 +19,18 @@ func (re *co_service) GetAll(email string) *libs.Response {
 	if err != nil {
 		return libs.New(err.Error(), 400, true)
 	}
-	if res.Role != "admin" {
-		data, err := re.co_repo.FindData(res.UserId)
-		if err != nil {
-			return libs.New(err.Error(), 400, true)
-		}
-		return libs.New(data, 200, false)
-	}
 
-	data, err := re.co_repo.FindAll()
+	data, err := re.co_repo.FindData(res.UserId)
 	if err != nil {
 		return libs.New(err.Error(), 400, true)
 	}
 	return libs.New(data, 200, false)
+
+	// data, err := re.co_repo.FindAll()
+	// if err != nil {
+	// 	return libs.New(err.Error(), 400, true)
+	// }
+	// return libs.New(data, 200, false)
 }
 
 func (re *co_service) Checkout(data *models.Checkout, email string) *libs.Response {
@@ -39,9 +38,9 @@ func (re *co_service) Checkout(data *models.Checkout, email string) *libs.Respon
 	if err != nil {
 		return libs.New(err.Error(), 400, true)
 	}
-	temp := res.UserId
-	data.UserId = temp
-	data.User.Email = res.Email
+	data.UserId = res.UserId
+	data.User.UserId = res.UserId
+	data.User.Email = email
 
 	result, err := re.co_repo.Save(data)
 	if err != nil {
@@ -49,24 +48,3 @@ func (re *co_service) Checkout(data *models.Checkout, email string) *libs.Respon
 	}
 	return libs.New(result, 201, false)
 }
-
-// func (re *co_service) PostReview(data *models.Review, email string) *libs.Response {
-// 	res, err := re.co_repo.GetId(email)
-// 	if err != nil {
-// 		return libs.New(err.Error(), 400, true)
-// 	}
-// 	data.UserId = res.UserId
-
-// 	res, err := re.co_repo.GetProductId()
-// 	if err != nil {
-// 		return libs.New(err.Error(), 400, true)
-// 	}
-// }
-
-// func (re *co_service) GetReview(id int) *libs.Response  {
-// 	res, err := re.co_repo.GetProductId(id)
-// 	if err != nil {
-// 		return libs.New(err.Error(), 400, true)
-// 	}
-// 	rev,
-// }
