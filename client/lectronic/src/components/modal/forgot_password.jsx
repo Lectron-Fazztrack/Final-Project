@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-function Forgot_Password() {
+function ForgotPassword() {
   const [show, setShow] = useState(false);
   const [next, setNext] = useState(0);
 
@@ -57,9 +57,9 @@ function Forgot_Password() {
                 style={{ marginBottom: "1rem" }}
               />
 
-              <Form.Label>Re-type New Password</Form.Label>
+              <Form.Label>Confirm New Password</Form.Label>
               <Form.Control
-                type="text"
+                type="password"
                 placeholder="minimum 8 character"
                 autoFocus
               />
@@ -119,4 +119,4 @@ function Forgot_Password() {
   );
 }
 
-export default Forgot_Password;
+export default ForgotPassword;

@@ -8,7 +8,6 @@ import arrow from "./img/arrow.png";
 import prfl from "./img/prfl.png";
 import edit from "./img/edit.png";
 import line from "./img/line.png";
-import key from "./img/key.png";
 import barrow from "./img/barrow.png";
 import { Link } from "react-router-dom";
 import name from "./img/name.png";
@@ -16,6 +15,7 @@ import loc from "./img/loc.png";
 import Dropdown from "react-bootstrap/Dropdown";
 import InputGroup from "react-bootstrap/InputGroup";
 import useApi from "../../helpers/api";
+import ChangePassword from "../../components/modal/change_password";
 
 function Profile() {
   const api = useApi();
@@ -28,9 +28,7 @@ function Profile() {
   const [address, setAddress] = useState("");
   const [gender, setGender] = useState("");
   const [phone, setPhone] = useState("");
-  const [pwd, setPwd] = useState("");
   const [countryID, setCountryID] = useState("");
-  const [pw, setPw] = useState("");
 
   const [data1, setData1] = useState("");
   const [data2, setData2] = useState(new Date());
@@ -93,11 +91,10 @@ function Profile() {
           address: address,
           gender: gender,
           phone: parseInt(phone),
-          password: pwd,
         },
       })
       .then((res) => {
-        console.log("up", res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   };
@@ -113,10 +110,6 @@ function Profile() {
     } else if (e.target.name === "+65") {
       setCountryID("+65");
     }
-  };
-
-  const thePwd = () => {
-    setPwd(pw);
   };
 
   const bd = () => {
@@ -314,36 +307,7 @@ function Profile() {
             />
           </InputGroup>
         </Col>
-        <Col sm={5}>
-          <h6 style={{ fontWeight: "bold" }}>Password</h6>
-          <InputGroup className="mb-3" style={{ position: "relative" }}>
-            <Form.Control
-              type="password"
-              style={{ padding: "15px", paddingLeft: "4rem" }}
-              placeholder="********"
-              onChange={(e) => setPw(e.target.value)}
-            />
-            <img
-              src={key}
-              alt={key}
-              style={{
-                position: "absolute",
-                top: "39%",
-                left: "1.8rem",
-                width: "16px",
-                height: "16px",
-              }}
-            />
-            <Button
-              variant="outline-secondary"
-              id="button-addon2"
-              style={{ color: "#415FE7" }}
-              onClick={thePwd}
-            >
-              Change
-            </Button>
-          </InputGroup>
-        </Col>
+        <ChangePassword />
       </Row>
 
       <Row style={{ marginLeft: "11.8vmin" }}>
