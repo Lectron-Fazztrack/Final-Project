@@ -67,9 +67,6 @@ function Profile() {
   };
 
   const getData = () => {
-    console.log(data2);
-    console.log(phone);
-    console.log(name1);
     api
       .req({
         url: "/user",
