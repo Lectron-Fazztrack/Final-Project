@@ -11,7 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Cloudinary(gin.HandlerFunc) gin.HandlerFunc {
+func Cloudinary() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		//**parse multipart/form-data
 		if isErr := c.Request.ParseMultipartForm(20 << 20); isErr != nil {
@@ -36,6 +36,7 @@ func Cloudinary(gin.HandlerFunc) gin.HandlerFunc {
 			c.Abort()
 		}
 
+		//Format name
 		name := time.Now().Format("2006-01-02_15:04:05") + "_" + handlerFile.Filename
 
 		cld, err1 := cloudinary.NewFromParams(os.Getenv("CLOUD_NAME"), os.Getenv("CLOUD_KEY"), os.Getenv("CLOUD_SEC"))
@@ -50,7 +51,7 @@ func Cloudinary(gin.HandlerFunc) gin.HandlerFunc {
 			c.Abort()
 		}
 
-		c.Set("imageName", upload.SecureURL)
+		c.Set("image", upload.SecureURL)
 		c.Next()
 	}
 }

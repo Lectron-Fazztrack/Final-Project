@@ -39,3 +39,14 @@ func (a *auth_ctrl) Register(c *gin.Context) {
 	}
 	a.repo.SignUp(&data).Send(c)
 }
+
+func (a *auth_ctrl) ForgetPassword(c *gin.Context) {
+	var data models.User
+	pass := c.Request.URL.Query().Get("email")
+	err := json.NewDecoder(c.Request.Body).Decode(&data)
+	if err != nil {
+		libs.New(err.Error(), 401, true)
+		c.Abort()
+	}
+	a.repo.ForgetPassword(pass, &data).Send(c)
+}

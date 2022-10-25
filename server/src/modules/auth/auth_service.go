@@ -51,10 +51,24 @@ func (u auth_service) SignUp(body *models.User) *libs.Response {
 	}
 
 	body.Password = hassPass
-	body.Role = "user"
+	if body.Role != "admin" {
+		body.Role = "user"
+	}
 	result, err := u.rep.Register(body)
 	if err != nil {
 		return libs.New(err.Error(), 401, true)
 	}
 	return libs.New(result, 200, false)
+}
+
+func (u auth_service) ForgetPassword(email string, data *models.User) *libs.Response {
+	err1 := libs.Validation(email, data.Password)
+	if err1 != nil {
+		return libs.New(err1.Error(), 400, true)
+	}
+	_, err := u.rep.ForgetPassword(email, data)
+	if err != nil {
+		return libs.New(err.Error(), 400, true)
+	}
+	return libs.New("success update password!", 201, false)
 }
