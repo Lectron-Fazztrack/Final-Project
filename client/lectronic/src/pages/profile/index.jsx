@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import Row from "react-bootstrap/Row";
@@ -101,8 +102,11 @@ function Profile() {
 
   useEffect(() => {
     getData();
-    hndlGender();
   });
+
+  useEffect(() => {
+    hndlGender();
+  }, [data4]);
 
   const cid = (e) => {
     if (e.target.name === "+62") {
