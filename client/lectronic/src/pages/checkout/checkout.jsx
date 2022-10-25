@@ -24,7 +24,7 @@ function Checkout() {
         data: order,
       })
       .then((res) => {
-        navigate("/products");
+        navigate("/history");
       })
       .catch((err) => {
         console.log(err);

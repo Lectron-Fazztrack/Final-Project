@@ -39,7 +39,6 @@ function Admin() {
 
   return (
     <div className="App">
-      {console.log(product)}
       <Header />
       <InputGroup className={style.parent}>
         <FormControl
