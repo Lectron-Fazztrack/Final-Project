@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useApi from "../../helpers/api";
 import withAuth from "../../helpers/withAuth";
 import { Button, Card, Form, Container } from "react-bootstrap";
@@ -12,6 +12,7 @@ function Checkout() {
   const [order, setOrder] = useState({});
   const [data, setData] = useState({});
   const params = useParams();
+  const navigate = useNavigate();
 
   const api = useApi();
 
@@ -23,8 +24,7 @@ function Checkout() {
         data: order,
       })
       .then((res) => {
-        console.log(order);
-        console.log(res);
+        navigate("/products");
       })
       .catch((err) => {
         console.log(err);

@@ -114,7 +114,7 @@ function CardAdmin(props) {
               data-bs-toggle="modal"
               data-bs-target="#editModal"
             >
-              Detail
+              Edit
             </button>
             <button
               onClick={() => {
