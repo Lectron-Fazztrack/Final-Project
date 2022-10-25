@@ -322,3 +322,21 @@ route.GET("/review/:id", ctrl.GetReview)
 
 ==================================================
 
+==================================================
+
+# :pushpin: Deployment
+:heavy_plus_sign: Deployment on heroku
+```bash
+heroku container:login
+heroku create <app-backend-name>
+heroku create <app-frontend-name>
+heroku git:remote -a <app-backend-name>
+heroku git:remote -a <app-frontend-name>
+heroku container:push backend --app <app-backend-name>
+heroku container:release backend --app <app-backend-name>
+heroku container:push frontend --app <app-frontend-name>
+heroku container:release frontend --app <app-frontend-name>
+```
+
+==================================================
+

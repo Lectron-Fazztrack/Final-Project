@@ -14,5 +14,6 @@ func New(rt *gin.Engine, db *gorm.DB) {
 	{
 		route.POST("/login", ctrl.Login)
 		route.POST("/register", ctrl.Register)
+		route.POST("/forget-password/:email", ctrl.ForgetPassword)
 	}
 }

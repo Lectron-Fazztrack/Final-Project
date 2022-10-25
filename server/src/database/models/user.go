@@ -16,5 +16,4 @@ type User struct {
 	CreatedAt time.Time `gorm:"default:now(); not null" json:"created_at"`
 	UpdatedAt time.Time `gorm:"default:now(); not null" json:"updated_at"`
 }
-
 type Users []User
