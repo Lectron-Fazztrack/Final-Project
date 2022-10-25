@@ -34,3 +34,11 @@
   border-radius: 10px;
   margin-left: 20px;
 }
+
+.modal-edit-button {
+  background: #0300ad;
+  color: #fff;
+  width: 138px;
+  height: 57px;
+  border-radius: 10px;
+}
