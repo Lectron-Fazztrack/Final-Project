@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
 )
 
 type Response struct {
@@ -24,6 +25,14 @@ func (res *Response) Send(c *gin.Context) {
 	if err != nil {
 		c.Writer.Write([]byte("Error When Encode respone"))
 	}
+}
+
+func (res *Response) Bind(c *gin.Context, obj interface{}) error {
+	if err := binding.JSON.Bind(c.Request, obj); err != nil {
+		c.Error(err).SetType(gin.ErrorTypeBind)
+		return err
+	}
+	return nil
 }
 
 func New(data interface{}, code int, isError bool) *Response {

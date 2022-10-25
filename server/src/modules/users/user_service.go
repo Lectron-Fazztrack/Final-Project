@@ -40,18 +40,10 @@ func (re *user_service) Update(data *models.User, email string) *libs.Response {
 		return libs.New(err.Error(), 400, true)
 	}
 
-	if oldData.Role == "admin" {
-		valid := libs.Validation(data.Email, data.Password)
-		if valid != nil {
-			return libs.New(valid.Error(), 400, true)
-		}
-
-		//Hasing New Password and update data
-		hassPass, err := libs.HashPassword(data.Password)
-		if err != nil {
-			return libs.New(err.Error(), 400, true)
-		}
-		data.Password = hassPass
+	if data.Password == "" {
+		data.Password = oldData.Password
+		data.Email = oldData.Email
+		data.Role = oldData.Role
 
 		result, err := re.user_repo.UpdateUser(data, email)
 		if err != nil {
@@ -60,7 +52,7 @@ func (re *user_service) Update(data *models.User, email string) *libs.Response {
 		return libs.New(result, 202, false)
 	}
 
-	valid := libs.Validation(data.Email, data.Password)
+	valid := libs.Validation(oldData.Email, data.Password)
 	if valid != nil {
 		return libs.New(valid.Error(), 400, true)
 	}
@@ -96,13 +88,13 @@ func (re *user_service) FindEmail(email string, limit, offset int) *libs.Respons
 	if err != nil {
 		return libs.New(err.Error(), 400, true)
 	}
-	if data.Role == "admin" {
-		datas, err := re.user_repo.FindAll(limit, offset)
-		if err != nil {
-			return libs.New(err.Error(), 400, true)
-		}
-		return libs.New(datas, 200, false)
-	}
+	// if data.Role == "admin" {
+	// 	datas, err := re.user_repo.FindAll(limit, offset)
+	// 	if err != nil {
+	// 		return libs.New(err.Error(), 400, true)
+	// 	}
+	// 	return libs.New(datas, 200, false)
+	// }
 	return libs.New(data, 200, false)
 }
 

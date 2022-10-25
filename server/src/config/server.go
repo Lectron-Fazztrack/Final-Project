@@ -36,22 +36,31 @@ func corsHandler() *cors.Cors {
 
 func server(cmd *cobra.Command, args []string) error {
 	if mainRoute, err := routers.New(); err == nil {
+		c := cors.New(cors.Options{
+			AllowedOrigins:   []string{"*"},
+			AllowedHeaders:   []string{"Content-Type", "Authorization"},
+			AllowedMethods:   []string{"POST", "GET", "PUT", "DELETE"},
+			AllowCredentials: true,
+			// Enable Debugging for testing, consider disabling in production
+			Debug: false,
+		})
+
+		handlerCors := c.Handler(mainRoute)
+
 		var addrs string = ":8080"
 		if port := os.Getenv("PORT"); port != "" {
 			addrs = ":" + port
 		}
-
-		corss := corsHandler()
 
 		srv := &http.Server{
 			Addr:         addrs,
 			WriteTimeout: time.Second * 15,
 			ReadTimeout:  time.Second * 15,
 			IdleTimeout:  time.Minute,
-			Handler:      corss.Handler(mainRoute),
+			Handler:      handlerCors,
 		}
 
-		fmt.Println("Gorent Api is running on PORT", addrs, "success")
+		fmt.Println("Lectronic is running on PORT", addrs, "success")
 		srv.ListenAndServe()
 		return nil
 	} else {
