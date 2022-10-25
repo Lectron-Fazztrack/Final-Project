@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import useApi from "../../helpers/api";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/reducer/user";
+import ForgotPassword from "../../components/modal/forgot_password";
 
 function Login() {
   const { isAuth } = useSelector((state) => state.users);
@@ -122,7 +123,7 @@ function Login() {
           </div>
 
           <div className="grid grid-cols-2 gap-4 relative">
-            <p className="md:text-md">Forgot Password?</p>
+            <ForgotPassword />
             <div className="absolute inset-y-0 right-0 w-24 lg:w-32 ...">
               <Button
                 style={{ fontWeight: "bold" }}
