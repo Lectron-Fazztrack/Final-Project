@@ -83,7 +83,6 @@ function Profile() {
   };
 
   const updateData = () => {
-    // console.log(birthdate);
     api
       .req({
         method: "PUT",
