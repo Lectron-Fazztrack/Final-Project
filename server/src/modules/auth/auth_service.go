@@ -61,9 +61,9 @@ func (u auth_service) SignUp(body *models.User) *libs.Response {
 	return libs.New(result, 200, false)
 }
 
-func (u auth_service)ForgetPassword(email string, data *models.User)*libs.Response{
+func (u auth_service) ForgetPassword(email string, data *models.User) *libs.Response {
 	_, err := u.rep.ForgetPassword(email, data)
-	if err != nil{
+	if err != nil {
 		return libs.New(err.Error(), 400, true)
 	}
 	return libs.New("success update password!", 201, false)

@@ -55,9 +55,9 @@ func (re *prod_servcie) Update(data *models.Product, id string) *libs.Response {
 }
 
 func (re *prod_servcie) Delete(id string) *libs.Response {
-	data, err := re.prod_repo.Delete(id)
-	if err != nil {
-		return libs.New(err.Error(), 400, true)
+	data := re.prod_repo.Delete(id)
+	if data != nil {
+		return libs.New(data.Error(), 400, true)
 	}
 	return libs.New(data, 200, false)
 }

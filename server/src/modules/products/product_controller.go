@@ -64,7 +64,7 @@ func (re *prod_ctrl) AddProduct(c *gin.Context) {
 		libs.New(err.Error(), 400, true)
 		c.Abort()
 	}
-	re.svc.Add(&data).Bind(c, &data)
+	re.svc.Add(&data).Send(c)
 }
 func (re *prod_ctrl) UpdateProduct(c *gin.Context) {
 	c.Writer.Header().Set("Content-Type", "multipart/form-data")

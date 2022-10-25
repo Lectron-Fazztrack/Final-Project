@@ -56,6 +56,13 @@ func (r *prod_repo) Save(data *models.Product) (*models.Product, error) {
 }
 func (r *prod_repo) Update(data *models.Product, id string) (*models.Product, error) {
 	var datas *models.Product
+	res := r.db.Where("product_id = ?", id).Find(&data)
+	if res.Error != nil {
+		return nil, errors.New("failed to obtain data")
+	}
+	if res.RowsAffected == 0 {
+		return nil, errors.New("data not found")
+	}
 
 	r.db.First(&datas, "product_id = ?", id)
 	if datas.Image != "" {
@@ -69,8 +76,15 @@ func (r *prod_repo) Update(data *models.Product, id string) (*models.Product, er
 
 	return data, nil
 }
-func (r *prod_repo) Delete(id string) (*models.Product, error) {
+func (r *prod_repo) Delete(id string) error {
 	var datas *models.Product
+	res := r.db.Where("product_id = ?", id).Find(&datas)
+	if res.Error != nil {
+		return errors.New("failed to obtain data")
+	}
+	if res.RowsAffected == 0 {
+		return errors.New("data not found")
+	}
 
 	r.db.First(&datas, "product_id = ?", id)
 	if datas.Image != "" {
@@ -79,9 +93,9 @@ func (r *prod_repo) Delete(id string) (*models.Product, error) {
 
 	result := r.db.Where("product_id", id).Delete(&datas)
 	if result.Error != nil {
-		return nil, errors.New("data not found!")
+		return errors.New("data not found!")
 	}
-	return datas, nil
+	return nil
 }
 
 func (r *prod_repo) GetProdId(id int) (*models.Product, error) {
@@ -126,7 +140,7 @@ func (r *prod_repo) AddReview(data *models.Review) (*models.Review, error) {
 func (r *prod_repo) GetReview(id int) (*models.Reviews, error) {
 	var datas *models.Reviews
 
-	res := r.db.Preload("Product").Preload("Checkout").Order("review_id asc").Where("product_id = ?", id).Find(&datas)
+	res := r.db.Preload("Product").Preload("Checkout").Preload("User").Order("review_id asc").Where("product_id = ?", id).Find(&datas)
 	if res.Error != nil {
 		return nil, errors.New("failled to obtain data")
 	}
