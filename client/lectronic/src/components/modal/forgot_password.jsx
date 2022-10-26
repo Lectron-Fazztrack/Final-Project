@@ -15,7 +15,7 @@ function ForgotPassword() {
   const forget = () => {
     api
       .req({
-        method: "POST",
+        method: "PUT",
         url: "/forget-password/" + email,
         data: {
           password: password1,
