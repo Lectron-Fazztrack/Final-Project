@@ -16,7 +16,7 @@ function ForgotPassword() {
     api
       .req({
         method: "PUT",
-        url: "/forget-password/" + email,
+        url: "/forget-password/?email=" + email,
         data: {
           password: password1,
         },
