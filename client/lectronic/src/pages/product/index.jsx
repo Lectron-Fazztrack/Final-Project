@@ -12,6 +12,7 @@ function Product() {
   const [airConditioner, setAirConditioner] = useState([]);
   const [television, setTelevision] = useState([]);
   const [router, setRouter] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getProducts = async () => {
     try {
@@ -49,6 +50,9 @@ function Product() {
           placeholder="Tap To Search For Something"
           aria-label="Tap To Search For Something"
           aria-describedby="basic-addon2"
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
         />
         <Button className={style.btn_search} id="button-addon2">
           <BsSearch className={style.bs_icon} />
@@ -132,19 +136,29 @@ function Product() {
             tabindex="0"
           >
             <div className="row">
-              {headphone.map((v, k) => {
-                return (
-                  <div className="col-xl-4 col-lg-6 col-sm-12">
-                    <CardOriginal
-                      id={v.id}
-                      name={v.name}
-                      price={v.price}
-                      rate={v.rating}
-                      image={v.image}
-                    />
-                  </div>
-                );
-              })}
+              {headphone
+                .filter((v) => {
+                  if (searchTerm == "") {
+                    return v;
+                  } else if (
+                    v.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return v;
+                  }
+                })
+                .map((v, k) => {
+                  return (
+                    <div className="col-xl-4 col-lg-6 col-sm-12">
+                      <CardOriginal
+                        id={v.id}
+                        name={v.name}
+                        price={v.price}
+                        rate={v.rating}
+                        image={v.image}
+                      />
+                    </div>
+                  );
+                })}
             </div>
           </div>
           <div
@@ -155,19 +169,29 @@ function Product() {
             tabindex="0"
           >
             <div className="row">
-              {airConditioner.map((v, k) => {
-                return (
-                  <div className="col-xl-4 col-lg-6 col-sm-12">
-                    <CardOriginal
-                      id={v.id}
-                      name={v.name}
-                      price={v.price}
-                      rate={v.rating}
-                      image={v.image}
-                    />
-                  </div>
-                );
-              })}
+              {airConditioner
+                .filter((v) => {
+                  if (searchTerm == "") {
+                    return v;
+                  } else if (
+                    v.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return v;
+                  }
+                })
+                .map((v, k) => {
+                  return (
+                    <div className="col-xl-4 col-lg-6 col-sm-12">
+                      <CardOriginal
+                        id={v.id}
+                        name={v.name}
+                        price={v.price}
+                        rate={v.rating}
+                        image={v.image}
+                      />
+                    </div>
+                  );
+                })}
             </div>
           </div>
           <div
@@ -178,19 +202,29 @@ function Product() {
             tabindex="0"
           >
             <div className="row">
-              {television.map((v, k) => {
-                return (
-                  <div className="col-xl-4 col-lg-6 col-sm-12">
-                    <CardOriginal
-                      id={v.id}
-                      name={v.name}
-                      price={v.price}
-                      rate={v.rating}
-                      image={v.image}
-                    />
-                  </div>
-                );
-              })}
+              {television
+                .filter((v) => {
+                  if (searchTerm == "") {
+                    return v;
+                  } else if (
+                    v.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return v;
+                  }
+                })
+                .map((v, k) => {
+                  return (
+                    <div className="col-xl-4 col-lg-6 col-sm-12">
+                      <CardOriginal
+                        id={v.id}
+                        name={v.name}
+                        price={v.price}
+                        rate={v.rating}
+                        image={v.image}
+                      />
+                    </div>
+                  );
+                })}
             </div>
           </div>
           <div
@@ -201,19 +235,29 @@ function Product() {
             tabindex="0"
           >
             <div className="row">
-              {router.map((v, k) => {
-                return (
-                  <div className="col-xl-4 col-lg-6 col-sm-12">
-                    <CardOriginal
-                      id={v.id}
-                      name={v.name}
-                      price={v.price}
-                      rate={v.rating}
-                      image={v.image}
-                    />
-                  </div>
-                );
-              })}
+              {router
+                .filter((v) => {
+                  if (searchTerm == "") {
+                    return v;
+                  } else if (
+                    v.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return v;
+                  }
+                })
+                .map((v, k) => {
+                  return (
+                    <div className="col-xl-4 col-lg-6 col-sm-12">
+                      <CardOriginal
+                        id={v.id}
+                        name={v.name}
+                        price={v.price}
+                        rate={v.rating}
+                        image={v.image}
+                      />
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@ function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isAuth } = useSelector((state) => state.users);
-  const api = useApi();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const viewAll = () => {
     navigate("/products");
@@ -230,6 +230,9 @@ function Home() {
             <div className="input-group mb-3">
               <input
                 type="text"
+                onChange={(event) => {
+                  setSearchTerm(event.target.value);
+                }}
                 className="form-control"
                 placeholder="Search"
                 aria-label="Username"
@@ -250,21 +253,31 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              {headphone.map((v, k) => {
-                if (k < 6) {
-                  return (
-                    <div className="col-xl-4 col-lg-6 col-sm-12">
-                      <CardOriginal
-                        id={v.id}
-                        name={v.name}
-                        price={v.price}
-                        rate={v.rating}
-                        image={v.image}
-                      />
-                    </div>
-                  );
-                }
-              })}
+              {headphone
+                .filter((v) => {
+                  if (searchTerm == "") {
+                    return v;
+                  } else if (
+                    v.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return v;
+                  }
+                })
+                .map((v, k) => {
+                  if (k < 6) {
+                    return (
+                      <div className="col-xl-4 col-lg-6 col-sm-12">
+                        <CardOriginal
+                          id={v.id}
+                          name={v.name}
+                          price={v.price}
+                          rate={v.rating}
+                          image={v.image}
+                        />
+                      </div>
+                    );
+                  }
+                })}
             </div>
           </div>
           <div
@@ -275,21 +288,31 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              {airConditioner.map((v, k) => {
-                if (k < 6) {
-                  return (
-                    <div className="col-xl-4 col-lg-6 col-sm-12">
-                      <CardOriginal
-                        id={v.id}
-                        name={v.name}
-                        price={v.price}
-                        rate={v.rating}
-                        image={v.image}
-                      />
-                    </div>
-                  );
-                }
-              })}
+              {airConditioner
+                .filter((v) => {
+                  if (searchTerm == "") {
+                    return v;
+                  } else if (
+                    v.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return v;
+                  }
+                })
+                .map((v, k) => {
+                  if (k < 6) {
+                    return (
+                      <div className="col-xl-4 col-lg-6 col-sm-12">
+                        <CardOriginal
+                          id={v.id}
+                          name={v.name}
+                          price={v.price}
+                          rate={v.rating}
+                          image={v.image}
+                        />
+                      </div>
+                    );
+                  }
+                })}
             </div>
           </div>
           <div
@@ -300,21 +323,31 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              {television.map((v, k) => {
-                if (k < 6) {
-                  return (
-                    <div className="col-xl-4 col-lg-6 col-sm-12">
-                      <CardOriginal
-                        id={v.id}
-                        name={v.name}
-                        price={v.price}
-                        rate={v.rating}
-                        image={v.image}
-                      />
-                    </div>
-                  );
-                }
-              })}
+              {television
+                .filter((v) => {
+                  if (searchTerm == "") {
+                    return v;
+                  } else if (
+                    v.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return v;
+                  }
+                })
+                .map((v, k) => {
+                  if (k < 6) {
+                    return (
+                      <div className="col-xl-4 col-lg-6 col-sm-12">
+                        <CardOriginal
+                          id={v.id}
+                          name={v.name}
+                          price={v.price}
+                          rate={v.rating}
+                          image={v.image}
+                        />
+                      </div>
+                    );
+                  }
+                })}
             </div>
           </div>
           <div
@@ -325,21 +358,31 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              {router.map((v, k) => {
-                if (k < 6) {
-                  return (
-                    <div className="col-xl-4 col-lg-6 col-sm-12">
-                      <CardOriginal
-                        id={v.id}
-                        name={v.name}
-                        price={v.price}
-                        rate={v.rating}
-                        image={v.image}
-                      />
-                    </div>
-                  );
-                }
-              })}
+              {router
+                .filter((v) => {
+                  if (searchTerm == "") {
+                    return v;
+                  } else if (
+                    v.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return v;
+                  }
+                })
+                .map((v, k) => {
+                  if (k < 6) {
+                    return (
+                      <div className="col-xl-4 col-lg-6 col-sm-12">
+                        <CardOriginal
+                          id={v.id}
+                          name={v.name}
+                          price={v.price}
+                          rate={v.rating}
+                          image={v.image}
+                        />
+                      </div>
+                    );
+                  }
+                })}
             </div>
           </div>
         </div>
