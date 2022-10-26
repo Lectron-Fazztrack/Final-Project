@@ -18,6 +18,13 @@ function Admin() {
   const [product, setProduct] = useState([]);
   const api = useApi();
 
+  //** Access for Admin Only */
+  useEffect(() => {
+    if (data.role !== "admin") {
+      navigate("/");
+    }
+  });
+
   const getProducts = () => {
     api
       .req({

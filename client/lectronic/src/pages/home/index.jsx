@@ -32,14 +32,23 @@ function Home() {
     navigate("/");
   };
 
+  //** Add Data User and Logout Expired Token */
   const getUser = async () => {
     try {
-      // const { data } = await api.req("/user");
-      // dispatch(addUsers(data.data));
+      const { data } = await api.req("/user");
+      dispatch(addUsers(data.data));
     } catch (error) {
       logOut();
     }
   };
+
+  useEffect(() => {
+    if (isAuth) {
+      getUser();
+    }
+
+    getProducts();
+  }, []);
 
   const getProducts = async () => {
     try {
@@ -63,14 +72,6 @@ function Home() {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    if (isAuth) {
-      getUser();
-    }
-
-    getProducts();
-  }, []);
 
   return (
     <div className="App">
