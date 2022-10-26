@@ -14,6 +14,7 @@ import { logout, addUsers } from "../../store/reducer/user";
 import useApi from "../../helpers/api";
 
 function Home() {
+  const api = useApi();
   const [headphone, setHeadphone] = useState([]);
   const [airConditioner, setAirConditioner] = useState([]);
   const [television, setTelevision] = useState([]);
