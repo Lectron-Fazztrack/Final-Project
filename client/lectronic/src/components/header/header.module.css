@@ -4,7 +4,7 @@
   height: 100%;
   padding: 20px 0;
   background: transparent;
-  background: #6d99a51a;
+  /* background: #6d99a51a; */
   margin-left: 0px;
   margin-top: 0px;
   font-family: 'Nunito';
@@ -23,6 +23,13 @@
 
 .navbar2 {
   margin-left: 60px;
+}
+
+.navbar3 {
+  height: 286px;
+  background: #0020b2;
+  position: absolute;
+  opacity: 0.05;
 }
 
 .button {
@@ -46,4 +53,28 @@
 .logo {
   margin-top: 35px;
   margin-bottom: 35px;
+}
+
+.but_back {
+  background: rgba(3, 0, 173, 0.1);
+  backdrop-filter: blur(100px);
+  border-radius: 10px;
+  border: 0;
+  padding: 15px 20px;
+}
+
+.but_back:hover {
+  background: rgba(3, 0, 173, 0.1);
+}
+
+.but_user {
+  background: #0300ad;
+  border-radius: 15px;
+  border: 0;
+  padding: 15px 20px;
+}
+
+.avatar {
+  padding: 10px 20px;
+  border-bottom: 1px solid #dbdbdb;
 }

@@ -1,0 +1,15 @@
+FROM node:alpine
+
+WORKDIR /finalProject/front-end/
+
+COPY ./lectronic .
+
+ENV REACT_APP_BASE_URL=${REACT_APP_BASE_URL}
+
+RUN npm i
+
+RUN npm i serve
+
+RUN npm run build
+
+CMD ["npx", "serve", "-s", "build"]

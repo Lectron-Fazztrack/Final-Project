@@ -6,11 +6,14 @@ import "./style.css";
 function CardOriginal(props) {
   const navigate = useNavigate();
   const detail = () => {
-    navigate("/product");
+    navigate("/products/detail/" + props.id);
+  };
+  const addToCart = () => {
+    navigate("/cart/" + props.id);
   };
   return (
     <div className="card-original">
-      <div className="card-title">{props.product_name}</div>
+      <div className="card-title">{props.name}</div>
       <div className="row">
         <div className="col-6 card-price">${props.price}</div>
         <div className="col-6 card-rating">{props.rate}</div>
@@ -20,7 +23,7 @@ function CardOriginal(props) {
         <button type="button" onClick={detail} class="card-button-detail">
           Detail
         </button>
-        <button type="button" class="card-button-cart">
+        <button type="button" onClick={addToCart} class="card-button-cart">
           <BsCart className="bs-cart" />
         </button>
       </div>

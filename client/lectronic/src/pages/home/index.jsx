@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import CardOriginal from "../../components/card/cardOriginal";
 import subscribe from "../../img/subscribe.png";
 import homebanner from "../../img/homebanner.png";
@@ -6,124 +7,73 @@ import { BsSearch, BsBag, BsCashCoin, BsBox } from "react-icons/bs";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import "./style.css";
-import img from "../../img/product-example.png";
-import ModalAdd from "../../components/modal/modalAdd";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout, addUsers } from "../../store/reducer/user";
+import useApi from "../../helpers/api";
 
 function Home() {
-  const data = [
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Headphone",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Headphone",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Headphone",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Headphone",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Air Conditioner",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Air Conditioner",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Television",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Television",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Television",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Television",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Router",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Router",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Router",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Router",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Router",
-    },
-    {
-      product_name: "Sennheiser HD 25",
-      price: 3000,
-      rating: 4.9,
-      image: "",
-      type: "Router",
-    },
-  ];
+  const api = useApi();
+  const [headphone, setHeadphone] = useState([]);
+  const [airConditioner, setAirConditioner] = useState([]);
+  const [television, setTelevision] = useState([]);
+  const [router, setRouter] = useState([]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isAuth } = useSelector((state) => state.users);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const viewAll = () => {
+    navigate("/products");
+  };
+
+  const logOut = () => {
+    dispatch(logout());
+    navigate("/");
+  };
+
+  //** Add Data User and Logout Expired Token */
+  const getUser = async () => {
+    try {
+      const { data } = await api.req("/user");
+      dispatch(addUsers(data.data));
+    } catch (error) {
+      logOut();
+    }
+  };
+
+  useEffect(() => {
+    if (isAuth) {
+      getUser();
+    }
+
+    getProducts();
+  }, []);
+
+  const getProducts = async () => {
+    try {
+      const { data: headphone } = await axios.get(
+        process.env.REACT_APP_BASE_URL + "products/types/Headphone"
+      );
+      const { data: airConditioner } = await axios.get(
+        process.env.REACT_APP_BASE_URL + "products/types/Conditioner"
+      );
+      const { data: television } = await axios.get(
+        process.env.REACT_APP_BASE_URL + "products/types/Television"
+      );
+      const { data: router } = await axios.get(
+        process.env.REACT_APP_BASE_URL + "products/types/Router"
+      );
+      setHeadphone(headphone.data);
+      setAirConditioner(airConditioner.data);
+      setTelevision(television.data);
+      setRouter(router.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="App">
       <Header />
@@ -164,7 +114,6 @@ function Home() {
           <br />
           Order Easily
         </div>
-        <ModalAdd />
         <div className="row">
           <div className="col-xl-4 col-lg-6">
             <div className="home-card">
@@ -283,6 +232,9 @@ function Home() {
             <div className="input-group mb-3">
               <input
                 type="text"
+                onChange={(event) => {
+                  setSearchTerm(event.target.value);
+                }}
                 className="form-control"
                 placeholder="Search"
                 aria-label="Username"
@@ -303,20 +255,31 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              {data.map((v, k) => {
-                if (v.type === "Headphone") {
-                  return (
-                    <div className="col-xl-4 col-lg-6 col-sm-12">
-                      <CardOriginal
-                        product_name={v.product_name}
-                        price={v.price}
-                        rate={v.rating}
-                        image={img}
-                      />
-                    </div>
-                  );
-                }
-              })}
+              {headphone
+                .filter((v) => {
+                  if (searchTerm == "") {
+                    return v;
+                  } else if (
+                    v.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return v;
+                  }
+                })
+                .map((v, k) => {
+                  if (k < 6) {
+                    return (
+                      <div className="col-xl-4 col-lg-6 col-sm-12">
+                        <CardOriginal
+                          id={v.id}
+                          name={v.name}
+                          price={v.price}
+                          rate={v.rating}
+                          image={v.image}
+                        />
+                      </div>
+                    );
+                  }
+                })}
             </div>
           </div>
           <div
@@ -327,20 +290,31 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              {data.map((v, k) => {
-                if (v.type === "Air Conditioner") {
-                  return (
-                    <div className="col-xl-4 col-lg-6 col-sm-12">
-                      <CardOriginal
-                        product_name={v.product_name}
-                        price={v.price}
-                        rate={v.rating}
-                        image={img}
-                      />
-                    </div>
-                  );
-                }
-              })}
+              {airConditioner
+                .filter((v) => {
+                  if (searchTerm == "") {
+                    return v;
+                  } else if (
+                    v.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return v;
+                  }
+                })
+                .map((v, k) => {
+                  if (k < 6) {
+                    return (
+                      <div className="col-xl-4 col-lg-6 col-sm-12">
+                        <CardOriginal
+                          id={v.id}
+                          name={v.name}
+                          price={v.price}
+                          rate={v.rating}
+                          image={v.image}
+                        />
+                      </div>
+                    );
+                  }
+                })}
             </div>
           </div>
           <div
@@ -351,20 +325,31 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              {data.map((v, k) => {
-                if (v.type === "Television") {
-                  return (
-                    <div className="col-xl-4 col-lg-6 col-sm-12">
-                      <CardOriginal
-                        product_name={v.product_name}
-                        price={v.price}
-                        rate={v.rating}
-                        image={img}
-                      />
-                    </div>
-                  );
-                }
-              })}
+              {television
+                .filter((v) => {
+                  if (searchTerm == "") {
+                    return v;
+                  } else if (
+                    v.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return v;
+                  }
+                })
+                .map((v, k) => {
+                  if (k < 6) {
+                    return (
+                      <div className="col-xl-4 col-lg-6 col-sm-12">
+                        <CardOriginal
+                          id={v.id}
+                          name={v.name}
+                          price={v.price}
+                          rate={v.rating}
+                          image={v.image}
+                        />
+                      </div>
+                    );
+                  }
+                })}
             </div>
           </div>
           <div
@@ -375,26 +360,37 @@ function Home() {
             tabindex="0"
           >
             <div className="row">
-              {data.map((v, k) => {
-                if (v.type === "Router") {
-                  return (
-                    <div className="col-xl-4 col-lg-6 col-sm-12">
-                      <CardOriginal
-                        product_name={v.product_name}
-                        price={v.price}
-                        rate={v.rating}
-                        image={img}
-                      />
-                    </div>
-                  );
-                }
-              })}
+              {router
+                .filter((v) => {
+                  if (searchTerm == "") {
+                    return v;
+                  } else if (
+                    v.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return v;
+                  }
+                })
+                .map((v, k) => {
+                  if (k < 6) {
+                    return (
+                      <div className="col-xl-4 col-lg-6 col-sm-12">
+                        <CardOriginal
+                          id={v.id}
+                          name={v.name}
+                          price={v.price}
+                          rate={v.rating}
+                          image={v.image}
+                        />
+                      </div>
+                    );
+                  }
+                })}
             </div>
           </div>
         </div>
 
         <div className="row">
-          <button type="button" className="home-button">
+          <button onClick={viewAll} type="button" className="home-button">
             View all
           </button>
         </div>
