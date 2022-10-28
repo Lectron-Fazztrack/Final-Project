@@ -9,6 +9,7 @@ const userSlice = createSlice({
   },
   reducers: {
     login(state, actions) {
+      console.log(actions.payload)
       return {
         ...state,
         isAuth: true,
