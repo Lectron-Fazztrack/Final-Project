@@ -36,7 +36,7 @@ function ModalAdd() {
 
     axios({
       method: "POST",
-      url: "http://localhost:8080/products",
+      url: "https://backend-lectron2.herokuapp.com/products",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data",
